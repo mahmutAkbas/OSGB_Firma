@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Personel
+    internal class Personel
     {
-        public int personel_id { get; set; }
-        public string isim { get; set; }
-        public string soyisim { get; set; }
-        public string telefon   { get; set; }
-        public string email { get; set; }
-        public int unvan { get; set; }
-        public bool aktiflik { get; set; }
-        public DateTime kayit_tarihi { get; set; }
-        public DateTime ayrilma_tarihi { get; set; }
-        public bool gorev_durumu { get; set; }
-}
+        public int ID { get; set; }
+        public string adi { get; set; }
+        public string soyadi { get; set; }
+        public string telefon { get; set; }
+        public DateTime kayitTarihi { get; set; }
+        public Boolean silinmeDurumu { get; set; }
+        public DateTime silinmeTarihi { get; set; }
+        public int unvanId { get; set; }
+
+    }
 }

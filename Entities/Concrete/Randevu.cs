@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Randevu
+    internal class Randevu
     {
-        public int randevu_id { get; set; }
-        public DateTime randevu_tarihi { get; set; }
-        public int firma_id { get; set; }
-        public bool randevu_durumu { get; set; }
-        public string aciklama { get; set; }
+        public int ID { get; set; }
+        public int yurutucuFirmaId { get; set; }
+        public DateTime randevuTarihi { get; set; }
+        public Boolean onay { get; set; }
+
     }
 }

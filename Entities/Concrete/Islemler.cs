@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Islemler
+    internal class Islemler
     {
-        public int islem_id { get; set; }
-        public string islem_adi { get; set; }
-        public int unvan_id { get; set; }
+        public int ID { get; set; }
+        public string adi { get; set; }
+        public string tip { get; set; }
+
     }
 }

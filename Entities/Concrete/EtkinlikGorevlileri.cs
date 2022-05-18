@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    internal class Unvan
+    internal class EtkinlikGorevlileri
     {
         public int ID { get; set; }
-        public string unvanAdi { get; set; }
+        public int personelId { get; set; }
+        public string yetki { get; set; }
 
     }
 }
