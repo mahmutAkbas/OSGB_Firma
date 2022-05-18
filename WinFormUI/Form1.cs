@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccess.Concrete.Dapper;
+using Entities.Concrete;
+using System;
 using System.Windows.Forms;
 
 namespace WinFormUI
@@ -17,5 +12,17 @@ namespace WinFormUI
             InitializeComponent();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UnvanDal dp = new UnvanDal();
+        
+            var result = dp.GetAllAsync();
+            if (result.IsCompleted)
+            {
+                comboBox1.Items.AddRange(result.Result.ToArray
+                    );
+               //comboBox1.DataSource = result.Result;
+            }
+        }
     }
 }

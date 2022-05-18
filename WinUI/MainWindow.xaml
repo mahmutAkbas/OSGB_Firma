@@ -1,0 +1,103 @@
+﻿<Window
+    x:Class="WinUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:WinUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Background="#1C1C1C"
+    MouseDown="Window_MouseDown"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+        <!--#region Bölümler-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+
+        <!--#region Üst Kısım-->
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            <TextBlock
+                Margin="20,0,0,0"
+                HorizontalAlignment="Center"
+                FontSize="30"
+                FontWeight="DemiBold"
+                Foreground="#E6E6E6"
+                Text="OSGB Firma Yazılımı" />
+            <hc:UniformSpacingPanel
+                HorizontalAlignment="Right"
+                MouseDown="Window_MouseDown"
+                Orientation="Horizontal"
+                Spacing="3">
+                <Button
+                    Name="Minimize"
+                    Width="35"
+                    Height="35"
+                    fa:Awesome.Content="WindowMinimize"
+                    Click="Minimize_Click"
+                    FontSize="20"
+                    Style="{StaticResource ButtonDashedInfo}" />
+                <Button
+                    Name="Close"
+                    Width="35"
+                    Height="35"
+                    fa:Awesome.Content="Close"
+                    Click="Close_Click"
+                    FontSize="20"
+                    Style="{StaticResource ButtonDanger}" />
+            </hc:UniformSpacingPanel>
+
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Yan Menu-->
+
+        <TreeView
+            Name="MenuList"
+            Grid.Row="1"
+            Grid.Column="0"
+            ItemsSource="{Binding Items}"
+            SelectedItemChanged="ListBoxDemo_SelectedItemChanged">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <fa:FontAwesome
+                            Width="20"
+                            Margin="3"
+                            FontSize="20"
+                            Icon="{Binding Image}" />
+                        <TextBlock
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            Text="{Binding Title}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <!--#endregion-->
+
+        <!--#region  İçerik-->
+        <ContentControl
+            x:Name="ContentView"
+            Grid.Row="1"
+            Grid.Column="1" />
+        <!--#endregion-->
+
+    </Grid>
+</Window>
