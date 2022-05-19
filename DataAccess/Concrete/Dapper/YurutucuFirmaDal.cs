@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.Dapper
 {
-    internal class YurutucuFirmaDal : IYurutucuFirmaDal
+    public class YurutucuFirmaDal : IYurutucuFirmaDal
     {
         public async Task<int> AddAsync(YurutucuFirma entity)
         {
