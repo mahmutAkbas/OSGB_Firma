@@ -5,8 +5,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IEtkinlikGorevleri:IBaseDal<EtkinlikGorevleri>
+    public interface IEtkinlikZiyaretDal:IBaseDal<EtkinlikZiyaret>
     {
-
     }
 }

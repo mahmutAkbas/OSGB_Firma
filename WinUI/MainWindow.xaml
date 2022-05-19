@@ -33,12 +33,13 @@
             Grid.Column="0"
             Grid.ColumnSpan="2">
             <TextBlock
-                Margin="20,0,0,0"
-                HorizontalAlignment="Center"
+                Margin="5,0,0,0"
+                HorizontalAlignment="Left"
                 FontSize="30"
                 FontWeight="DemiBold"
                 Foreground="#E6E6E6"
                 Text="OSGB Firma Yazılımı" />
+
             <hc:UniformSpacingPanel
                 HorizontalAlignment="Right"
                 MouseDown="Window_MouseDown"
@@ -51,7 +52,14 @@
                     fa:Awesome.Content="WindowMinimize"
                     Click="Minimize_Click"
                     FontSize="20"
-                    Style="{StaticResource ButtonDashedInfo}" />
+                    Style="{StaticResource ButtonPrimary}" />
+                <ToggleButton
+                    Name="Maximize"
+                    Height="35"
+                    fa:Awesome.Content="WindowMaximize"
+                    Click="Maximize_Click"
+                    FontSize="20"
+                    Style="{StaticResource ToggleButtonPrimary}" />
                 <Button
                     Name="Close"
                     Width="35"

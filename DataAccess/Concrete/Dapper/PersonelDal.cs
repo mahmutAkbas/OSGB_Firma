@@ -7,55 +7,55 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.Dapper
 {
-    public class EtkinlikGorevleriDal : IEtkinlikGorevleriDal
+    public class PersonelDal : IPersonelDal
     {
-        public Task<int> AddAsync(EtkinlikGorevleri entity)
+        public async Task<int> AddAsync(Personel entity)
         {
-            string query = "INSERT INTO etkinlik_gorevleri (etkinlikid, islemid, aciklama, tarih) VALUES(@etkinlikid, @islemid, @aciklama, @tarih); ";
+            string query = "INSERT INTO public.personel (adi, soyadi, telefon, kayittarihi, silinmedurumu, silinmetarihi, unvanid) VALUES (@adi, @soyadi, @telefon, @kayittarihi, @silinmedurumu, @silinmetarihi, @unvanid);";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = connection.ExecuteAsync(query, entity);
+                var result = await connection.ExecuteAsync(query, entity);
                 return result;
             }
         }
 
-        public Task<int> DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
-            string query = "DELETE FROM public.etkinlik_gorevleri WHERE id=@id;";
+            string query = "DELETE FROM public.personel WHERE id=@id ;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = connection.ExecuteAsync(query, id);
+                var result = await connection.ExecuteAsync(query, id);
                 return result;
             }
         }
 
-        public async Task<List<EtkinlikGorevleri>> GetAllAsync()
+        public async Task<List<Personel>> GetAllAsync()
         {
-            string query = "SELECT * FROM public.etkinlik_gorevleri";
+            string query = "SELECT * FROM public.personel WHERE id=@id ;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<EtkinlikGorevleri>(query);
+                var result = await connection.QueryAsync<Personel>(query);
                 return result.AsList();
             }
         }
 
-        public async Task<EtkinlikGorevleri> GetByIdAsync(int id)
+        public async Task<Personel> GetByIdAsync(int id)
         {
-            string query = "SELECT * FROM public.etkinlik_gorevleri WHERE id=@id;";
+            string query = "SELECT * FROM public.personel WHERE id=@id ;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryFirstAsync<EtkinlikGorevleri>(query,id);
+                var result = await connection.QueryFirstAsync<Personel>(query, id);
                 return result;
             }
         }
 
-        public Task<int> UpdateAsync(EtkinlikGorevleri entity)
+        public Task<int> UpdateAsync(Personel entity)
         {
-            string query = "UPDATE public.etkinlik_gorevleri SET etkinlikid =@etkinlikid, islemid =@islemid , aciklama =@aciklama, tarih =@tarih WHERE id=@id;";
+            string query = "UPDATE public.personel SET  adi=@adi, soyadi=@soyadi, telefon=@telefon, kayittarihi=@kayittarihi, silinmedurumu=@silinmedurumu, silinmetarihi=@silinmetarihi, unvanid=@unvanid WHERE id=@id;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();

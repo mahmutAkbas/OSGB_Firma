@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using DataAccess.Abstract;
-using Entities.Concrete;
 using Entities.Concrete.Data;
 using Npgsql;
 using System.Collections.Generic;
@@ -8,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.Dapper
 {
-    public class UnvanDal : IUnvanDal
+    public class EtkinlikGorevliileriDal : IEtkinlikGorevlileriDal
     {
-        public async Task<int> AddAsync(Unvan entity)
+        public async Task<int> AddAsync(EtkinlikGorevlileri entity)
         {
-            var query = "INSERT INTO unvan (unvanadi) VALUES (@UnvanAdi);";
+            string query = "INSERT INTO public.etkinlik_gorevlileri(personelid, yetki,etkinlikziyaretid)VALUES (@personelid, @yetki,@etkinlikziyaretid);";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
@@ -23,40 +22,40 @@ namespace DataAccess.Concrete.Dapper
 
         public async Task<int> DeleteAsync(int id)
         {
-            string query = "DELETE FROM public.unvan WHERE id=@id; ";
+            string query = "DELETE FROM public.etkinlik_gorevlileri WHERE id=@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, new {id= id });
+                var result = await connection.ExecuteAsync(query, id);
                 return result;
             }
         }
 
-        public async Task<List<Unvan>> GetAllAsync()
+        public async Task<List<EtkinlikGorevlileri>> GetAllAsync()
         {
-            string query = "SELECT id, unvanadi FROM public.unvan;";
+            string query = "SELECT * FROM public.etkinlik_gorevlileri; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<Unvan>(query);
+                var result = await connection.QueryAsync<EtkinlikGorevlileri>(query);
                 return result.AsList();
             }
         }
 
-        public async Task<Unvan> GetByIdAsync(int id)
+        public async Task<EtkinlikGorevlileri> GetByIdAsync(int id)
         {
-            string query = "SELECT id, unvanadi FROM public.unvan WHERE id=@id;";
+            string query = "SELECT * FROM public.etkinlik_gorevlileri WHERE id=@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryFirstAsync<Unvan>(query, id);
+                var result = await connection.QueryFirstAsync<EtkinlikGorevlileri>(query, id);
                 return result;
             }
         }
 
-        public async Task<int> UpdateAsync(Unvan entity)
+        public async Task<int> UpdateAsync(EtkinlikGorevlileri entity)
         {
-            string query = "UPDATE public.unvan SET unvanadi = @UnvanAdi WHERE id = @id;";
+            string query = "UPDATE public.etkinlik_gorevlileri SET personelid =@personelid, yetki =@yetki, etkinlikziyaretid =@etkinlikziyaretid WHERE id =@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();

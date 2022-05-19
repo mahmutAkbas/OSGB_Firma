@@ -1,4 +1,5 @@
-﻿using DataAccess.Concrete.Dapper;
+﻿using Business;
+using DataAccess.Concrete.Dapper;
 using System.Windows;
 using System.Windows.Input;
 using WinUI.Helper.Menu;
@@ -13,15 +14,14 @@ namespace WinUI
         public MainWindow()
         {
             InitializeComponent();
-            MenuList.ItemsSource = TreeViewMenuManager.GetMenu();
+            faktory = new DataFaktory();
+            MenuList.ItemsSource = TreeViewMenuManager.GetMenu(faktory);
+           
         }
-
+        DataFaktory faktory;
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            UnvanDal etkinlik = new UnvanDal();
-         var result=   etkinlik.AddAsync(new Entities.Concrete.Data.Unvan() { UnvanAdi="Hekim"});
-            System.Windows.Forms.MessageBox.Show(result.Result.ToString());
-            //   Close();
+               Close();
         }
 
         private void ListBoxDemo_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -39,6 +39,18 @@ namespace WinUI
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void Maximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (Maximize.IsChecked==true)
+            {
+                WindowState=WindowState.Maximized;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+            }
         }
     }
 }

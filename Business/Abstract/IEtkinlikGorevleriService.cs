@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IUnvanService:IBaseService<Unvan>
+    public interface IEtkinlikGorevleriService:IBaseService<EtkinlikGorevleri>
     {
-        
     }
 }

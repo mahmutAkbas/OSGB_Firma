@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Business;
+using System.Collections.Generic;
 using WinUI.Views;
 
 namespace WinUI.Helper.Menu
@@ -11,10 +12,10 @@ namespace WinUI.Helper.Menu
         {
             Items = new List<TreeViewMenu>();
         }
-        public static List<TreeViewMenu> GetMenu()
+        public static List<TreeViewMenu> GetMenu(DataFaktory dataFaktory)
         {
             TreeViewMenu menu = new TreeViewMenu() { Title = "Ünvan", Image = FontAwesome.WPF.FontAwesomeIcon.StarOutline};
-            menu.Children.Add(new TreeViewMenuChlid() { Title = "Ünvan Ekle", Image = FontAwesome.WPF.FontAwesomeIcon.Plus, Path = new UnvanEkle() });
+            menu.Children.Add(new TreeViewMenuChlid() { Title = "Ünvan Ekle", Image = FontAwesome.WPF.FontAwesomeIcon.Plus, Path = new UnvanEkle(dataFaktory) });
             Items.Add(menu);
             return Items;
         }
