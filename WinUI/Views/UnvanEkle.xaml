@@ -31,9 +31,9 @@
                     hc:InfoElement.Placeholder="Örn: Hekim"
                     hc:InfoElement.Title="Ünvan Adı"
                     Style="{StaticResource TextBoxExtend}" />
-                <UniformGrid Columns="3" FirstColumn="1">
+                <UniformGrid Columns="4" FirstColumn="1">
                     <Button
-                        x:Name="BtnEkle"
+                        Name="BtnEkle"
                         Margin="3"
                         HorizontalAlignment="Stretch"
                         Click="BtnEkle_Click"
@@ -48,7 +48,7 @@
                         </StackPanel>
                     </Button>
                     <Button
-                        x:Name="BtnGuncelle"
+                        Name="BtnGuncelle"
                         Margin="3"
                         HorizontalAlignment="Stretch"
                         Click="BtnGuncelle_Click"
@@ -62,7 +62,21 @@
                                 Text="Güncelle" />
                         </StackPanel>
                     </Button>
-
+                    <Button
+                        Name="BtnTemizle"
+                        Margin="3"
+                        HorizontalAlignment="Stretch"
+                        Click="BtnTemizle_Click"
+                        Style="{StaticResource ButtonDanger}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome FontSize="18" Icon="Remove" />
+                            <TextBlock
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                FontWeight="Medium"
+                                Text="Temizle" />
+                        </StackPanel>
+                    </Button>
                 </UniformGrid>
             </hc:UniformSpacingPanel>
         </GroupBox>

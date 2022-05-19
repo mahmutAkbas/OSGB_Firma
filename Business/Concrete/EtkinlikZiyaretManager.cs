@@ -5,6 +5,7 @@ using Business.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -15,54 +16,54 @@ namespace Business.Concrete
         {
             _etkinlikZiyaretDal = etkinlikZiyaretDal;
         }
-        public IDataResult<int> Add(EtkinlikZiyaret entity)
+        public async Task<IDataResult<int>> Add(EtkinlikZiyaret entity)
         {
-            var result = _etkinlikZiyaretDal.AddAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _etkinlikZiyaretDal.AddAsync(entity);
+            if (result> 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.EtkinlikZiyaretiAddBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiAddBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.EtkinlikZiyaretiAddBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiAddBasarisiz);
         }
 
-        public IDataResult<int> Delete(EtkinlikZiyaret entity)
+        public async Task<IDataResult<int>> Delete(EtkinlikZiyaret entity)
         {
-            var result = _etkinlikZiyaretDal.AddAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result =await _etkinlikZiyaretDal.AddAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.EtkinlikZiyaretiDeleteBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.EtkinlikZiyaretiDeleteBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiDeleteBasarisiz);
         }
 
-        public IDataResult<List<EtkinlikZiyaret>> GetAll()
+        public async Task<IDataResult<List<EtkinlikZiyaret>>> GetAll()
         {
-            var result = _etkinlikZiyaretDal.GetAllAsync();
-            if (result.IsCompleted && result.Result != null && result.Result.Count > 0)
+            var result =await _etkinlikZiyaretDal.GetAllAsync();
+            if ( result != null && result.Count > 0)
             {
-                return new SuccessDataResult<List<EtkinlikZiyaret>>(result.Result);
+                return new SuccessDataResult<List<EtkinlikZiyaret>>(result);
             }
-            return new ErrorDataResult<List<EtkinlikZiyaret>>(result.Result);
+            return new ErrorDataResult<List<EtkinlikZiyaret>>(result);
         }
 
-        public IDataResult<EtkinlikZiyaret> GetById(int id)
+        public async Task<IDataResult<EtkinlikZiyaret>> GetById(int id)
         {
-            var result = _etkinlikZiyaretDal.GetByIdAsync(id);
-            if (result.IsCompleted && result.Result != null)
+            var result =await _etkinlikZiyaretDal.GetByIdAsync(id);
+            if (result != null)
             {
-                return new SuccessDataResult<EtkinlikZiyaret>(result.Result);
+                return new SuccessDataResult<EtkinlikZiyaret>(result);
             }
-            return new ErrorDataResult<EtkinlikZiyaret>(result.Result);
+            return new ErrorDataResult<EtkinlikZiyaret>(result);
         }
 
-        public IDataResult<int> Update(EtkinlikZiyaret entity)
+        public async Task<IDataResult<int>> Update(EtkinlikZiyaret entity)
         {
-            var result = _etkinlikZiyaretDal.UpdateAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result =await _etkinlikZiyaretDal.UpdateAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.EtkinlikZiyaretiUpdateBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.EtkinlikZiyaretiUpdateBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiUpdateBasarisiz);
         }
     }
 }

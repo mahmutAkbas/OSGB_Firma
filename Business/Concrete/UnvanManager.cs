@@ -30,7 +30,7 @@ namespace Business.Concrete
 
         public async Task<IDataResult<int>> Delete(Unvan entity)
         {
-            var result =await _unvanDal.DeleteAsync(entity.Id);
+            var result = await _unvanDal.DeleteAsync(entity.Id);
             if (result > 0)
             {
                 return new SuccessDataResult<int>(result, ResponseMessages.UnvanDeleteBasarili);
@@ -38,34 +38,34 @@ namespace Business.Concrete
             return new ErrorDataResult<int>(result, ResponseMessages.UnvanDeleteBasarisiz);
         }
 
-        public IDataResult<List<Unvan>> GetAll()
+        public async Task<IDataResult<List<Unvan>>> GetAll()
         {
-            var result = _unvanDal.GetAllAsync();
-            if (result.IsCompleted && result.Result != null && result.Result.Count > 0)
+            var result = await _unvanDal.GetAllAsync();
+            if (result != null && result.Count > 0)
             {
-                return new SuccessDataResult<List<Unvan>>(result.Result);
+                return new SuccessDataResult<List<Unvan>>(result);
             }
             return new ErrorDataResult<List<Unvan>>();
         }
 
-        public IDataResult<Unvan> GetById(int id)
+        public async Task<IDataResult<Unvan>> GetById(int id)
         {
-            var result = _unvanDal.GetByIdAsync(id);
-            if (result.IsCompleted && result.Result != null)
+            var result = await _unvanDal.GetByIdAsync(id);
+            if (result != null)
             {
-                return new SuccessDataResult<Unvan>(result.Result);
+                return new SuccessDataResult<Unvan>(result);
             }
             return new ErrorDataResult<Unvan>();
         }
 
-        public IDataResult<int> Update(Unvan entity)
+        public async Task<IDataResult<int>> Update(Unvan entity)
         {
-            var result = _unvanDal.UpdateAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _unvanDal.UpdateAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.UnvanUpdateBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.UnvanUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.UnvanUpdateBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.UnvanUpdateBasarisiz);
         }
     }
 }

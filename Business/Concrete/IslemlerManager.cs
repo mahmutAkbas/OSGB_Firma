@@ -5,6 +5,7 @@ using Business.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -16,54 +17,54 @@ namespace Business.Concrete
             _islemlerDal = islemlerDal;
         }
 
-        public IDataResult<int> Add(Islemler entity)
+        public async Task<IDataResult<int>> Add(Islemler entity)
         {
-            var result = _islemlerDal.AddAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _islemlerDal.AddAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.IslemlerAddBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.IslemlerAddBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.IslemlerAddBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.IslemlerAddBasarisiz);
         }
 
-        public IDataResult<int> Delete(Islemler entity)
+        public async Task<IDataResult<int>> Delete(Islemler entity)
         {
-            var result = _islemlerDal.DeleteAsync(entity.Id);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _islemlerDal.DeleteAsync(entity.Id);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.IslemlerDeleteBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.IslemlerDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.IslemlerDeleteBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.IslemlerDeleteBasarisiz);
         }
 
-        public IDataResult<List<Islemler>> GetAll()
+        public async Task<IDataResult<List<Islemler>>> GetAll()
         {
-            var result = _islemlerDal.GetAllAsync();
-            if (result.IsCompleted && result.Result != null && result.Result.Count > 0)
+            var result = await _islemlerDal.GetAllAsync();
+            if (result != null && result.Count > 0)
             {
-                return new SuccessDataResult<List<Islemler>>(result.Result);
+                return new SuccessDataResult<List<Islemler>>(result);
             }
-            return new ErrorDataResult<List<Islemler>>(result.Result);
+            return new ErrorDataResult<List<Islemler>>(result);
         }
 
-        public IDataResult<Islemler> GetById(int id)
+        public async Task<IDataResult<Islemler>> GetById(int id)
         {
-            var result = _islemlerDal.GetByIdAsync(id);
-            if (result.IsCompleted && result.Result != null)
+            var result = await _islemlerDal.GetByIdAsync(id);
+            if (result != null)
             {
-                return new SuccessDataResult<Islemler>(result.Result);
+                return new SuccessDataResult<Islemler>(result);
             }
-            return new ErrorDataResult<Islemler>(result.Result);
+            return new ErrorDataResult<Islemler>(result);
         }
 
-        public IDataResult<int> Update(Islemler entity)
+        public async Task<IDataResult<int>> Update(Islemler entity)
         {
-            var result = _islemlerDal.UpdateAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _islemlerDal.UpdateAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.IslemlerUpdateBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.IslemlerUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.IslemlerUpdateBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.IslemlerUpdateBasarisiz);
         }
     }
 }

@@ -5,6 +5,7 @@ using Business.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -15,54 +16,55 @@ namespace Business.Concrete
         {
             _personelDal = personelDal;
         }
-        public IDataResult<int> Add(Personel entity)
+
+        public async Task<IDataResult<int>> Add(Personel entity)
         {
-            var result = _personelDal.AddAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _personelDal.AddAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.PersonelAddBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.PersonelAddBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.PersonelAddBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.PersonelAddBasarisiz);
         }
 
-        public IDataResult<int> Delete(Personel entity)
+        public async Task<IDataResult<int>> Delete(Personel entity)
         {
-            var result = _personelDal.DeleteAsync(entity.Id);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _personelDal.DeleteAsync(entity.Id);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.PersonelDeleteBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.PersonelDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.PersonelDeleteBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.PersonelDeleteBasarisiz);
         }
 
-        public IDataResult<List<Personel>> GetAll()
+        public async Task<IDataResult<List<Personel>>> GetAll()
         {
-            var result = _personelDal.GetAllAsync();
-            if (result.IsCompleted && result.Result != null && result.Result.Count > 0)
+            var result = await _personelDal.GetAllAsync();
+            if (result != null && result.Count > 0)
             {
-                return new SuccessDataResult<List<Personel>>(result.Result);
+                return new SuccessDataResult<List<Personel>>(result);
             }
-            return new ErrorDataResult<List<Personel>>(result.Result);
+            return new ErrorDataResult<List<Personel>>(result);
         }
 
-        public IDataResult<Personel> GetById(int id)
+        public async Task<IDataResult<Personel>> GetById(int id)
         {
-            var result = _personelDal.GetByIdAsync(id);
-            if (result.IsCompleted && result.Result != null)
+            var result = await _personelDal.GetByIdAsync(id);
+            if (result != null)
             {
-                return new SuccessDataResult<Personel>(result.Result);
+                return new SuccessDataResult<Personel>(result);
             }
-            return new ErrorDataResult<Personel>(result.Result);
+            return new ErrorDataResult<Personel>(result);
         }
 
-        public IDataResult<int> Update(Personel entity)
+        public async Task<IDataResult<int>> Update(Personel entity)
         {
-            var result = _personelDal.UpdateAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _personelDal.UpdateAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.PersonelUpdateBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.PersonelUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.PersonelUpdateBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.PersonelUpdateBasarisiz);
         }
     }
 }

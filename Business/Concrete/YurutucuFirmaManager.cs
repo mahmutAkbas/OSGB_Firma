@@ -5,6 +5,7 @@ using Business.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -15,54 +16,55 @@ namespace Business.Concrete
         {
             _yurutucuFirmaDal = yurutucuFirmaDal;
         }
-        public IDataResult<int> Add(YurutucuFirma entity)
+
+        public async Task<IDataResult<int>> Add(YurutucuFirma entity)
         {
-            var result = _yurutucuFirmaDal.AddAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result =await _yurutucuFirmaDal.AddAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.YurutucuFirmaAddBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.YurutucuFirmaAddBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.YurutucuFirmaAddBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.YurutucuFirmaAddBasarisiz);
         }
 
-        public IDataResult<int> Delete(YurutucuFirma entity)
+        public async Task<IDataResult<int>> Delete(YurutucuFirma entity)
         {
-            var result = _yurutucuFirmaDal.DeleteAsync(entity.Id);
-            if (result.IsCompleted && result.Result > 0)
+            var result =await _yurutucuFirmaDal.DeleteAsync(entity.Id);
+            if ( result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.YurutucuFirmaDeleteBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.YurutucuFirmaDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.YurutucuFirmaDeleteBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.YurutucuFirmaDeleteBasarisiz);
         }
 
-        public IDataResult<List<YurutucuFirma>> GetAll()
+        public async Task<IDataResult<List<YurutucuFirma>>> GetAll()
         {
-            var result = _yurutucuFirmaDal.GetAllAsync();
-            if (result.IsCompleted && result.Result != null && result.Result.Count > 0)
+            var result =await _yurutucuFirmaDal.GetAllAsync();
+            if ( result != null && result.Count > 0)
             {
-                return new SuccessDataResult<List<YurutucuFirma>>(result.Result);
+                return new SuccessDataResult<List<YurutucuFirma>>(result);
             }
-            return new ErrorDataResult<List<YurutucuFirma>>(result.Result);
+            return new ErrorDataResult<List<YurutucuFirma>>(result);
         }
 
-        public IDataResult<YurutucuFirma> GetById(int id)
+        public async Task<IDataResult<YurutucuFirma>> GetById(int id)
         {
-            var result = _yurutucuFirmaDal.GetByIdAsync(id);
-            if (result.IsCompleted && result.Result != null)
+            var result =await _yurutucuFirmaDal.GetByIdAsync(id);
+            if ( result != null)
             {
-                return new SuccessDataResult<YurutucuFirma>(result.Result);
+                return new SuccessDataResult<YurutucuFirma>(result);
             }
-            return new ErrorDataResult<YurutucuFirma>(result.Result);
+            return new ErrorDataResult<YurutucuFirma>(result);
         }
 
-        public IDataResult<int> Update(YurutucuFirma entity)
+        public async Task<IDataResult<int>> Update(YurutucuFirma entity)
         {
-            var result = _yurutucuFirmaDal.UpdateAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result =await _yurutucuFirmaDal.UpdateAsync(entity);
+            if ( result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.YurutucuFirmaUpdateBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.YurutucuFirmaUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.YurutucuFirmaUpdateBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.YurutucuFirmaUpdateBasarisiz);
         }
     }
 }

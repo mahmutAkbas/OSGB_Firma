@@ -5,6 +5,7 @@ using Business.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -15,54 +16,54 @@ namespace Business.Concrete
         {
             _etkinlikGorevlileriDal = etkinlikGorevlileriDal;
         }
-        public IDataResult<int> Add(EtkinlikGorevlileri entity)
+        public async Task<IDataResult<int>> Add(EtkinlikGorevlileri entity)
         {
-            var result = _etkinlikGorevlileriDal.AddAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _etkinlikGorevlileriDal.AddAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.EtkinlikGorevlileriAddBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikGorevlileriAddBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.EtkinlikGorevlileriAddBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikGorevlileriAddBasarisiz);
         }
 
-        public IDataResult<int> Delete(EtkinlikGorevlileri entity)
+        public async Task<IDataResult<int>> Delete(EtkinlikGorevlileri entity)
         {
-            var result = _etkinlikGorevlileriDal.DeleteAsync(entity.Id);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _etkinlikGorevlileriDal.DeleteAsync(entity.Id);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.EtkinlikGorevlileriAddBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikGorevlileriAddBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.EtkinlikGorevlileriAddBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikGorevlileriAddBasarisiz);
         }
 
-        public IDataResult<List<EtkinlikGorevlileri>> GetAll()
+        public async Task<IDataResult<List<EtkinlikGorevlileri>>> GetAll()
         {
-            var result = _etkinlikGorevlileriDal.GetAllAsync();
-            if (result.IsCompleted && result.Result != null && result.Result.Count > 0)
+            var result = await _etkinlikGorevlileriDal.GetAllAsync();
+            if (result != null && result.Count > 0)
             {
-                return new SuccessDataResult<List<EtkinlikGorevlileri>>(result.Result);
+                return new SuccessDataResult<List<EtkinlikGorevlileri>>(result);
             }
-            return new ErrorDataResult<List<EtkinlikGorevlileri>>(result.Result);
+            return new ErrorDataResult<List<EtkinlikGorevlileri>>(result);
         }
 
-        public IDataResult<EtkinlikGorevlileri> GetById(int id)
+        public async Task<IDataResult<EtkinlikGorevlileri>> GetById(int id)
         {
-            var result = _etkinlikGorevlileriDal.GetByIdAsync(id);
-            if (result.IsCompleted && result.Result != null)
+            var result = await _etkinlikGorevlileriDal.GetByIdAsync(id);
+            if (result != null)
             {
-                return new SuccessDataResult<EtkinlikGorevlileri>(result.Result);
+                return new SuccessDataResult<EtkinlikGorevlileri>(result);
             }
-            return new ErrorDataResult<EtkinlikGorevlileri>(result.Result);
+            return new ErrorDataResult<EtkinlikGorevlileri>(result);
         }
 
-        public IDataResult<int> Update(EtkinlikGorevlileri entity)
+        public async Task<IDataResult<int>> Update(EtkinlikGorevlileri entity)
         {
-            var result = _etkinlikGorevlileriDal.UpdateAsync(entity);
-            if (result.IsCompleted && result.Result > 0)
+            var result = await _etkinlikGorevlileriDal.UpdateAsync(entity);
+            if (result > 0)
             {
-                return new SuccessDataResult<int>(result.Result, ResponseMessages.EtkinlikGorevlileriUpdateBasarili);
+                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikGorevlileriUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result.Result, ResponseMessages.EtkinlikGorevlileriUpdateBasarisiz);
+            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikGorevlileriUpdateBasarisiz);
         }
     }
 }
