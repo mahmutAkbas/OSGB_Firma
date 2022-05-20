@@ -17,30 +17,30 @@ namespace Business.Concrete
             _unvanDal = unvanDal;
         }
 
-        public async Task<IDataResult<int>> Add(Unvan entity)
+        public IResult Add(Unvan entity)
         {
-            var result = await _unvanDal.AddAsync(entity);
+            var result =  _unvanDal.Add(entity);
 
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.UnvanAddBasarili);
+                return new SuccessResult( ResponseMessages.UnvanAddBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.UnvanAddBasarisiz);
+            return new ErrorResult( ResponseMessages.UnvanAddBasarisiz);
         }
 
-        public async Task<IDataResult<int>> Delete(Unvan entity)
+        public IResult Delete(Unvan entity)
         {
-            var result = await _unvanDal.DeleteAsync(entity.Id);
+            var result =  _unvanDal.Delete(entity.Id);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.UnvanDeleteBasarili);
+                return new SuccessResult( ResponseMessages.UnvanDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.UnvanDeleteBasarisiz);
+            return new ErrorResult( ResponseMessages.UnvanDeleteBasarisiz);
         }
 
-        public async Task<IDataResult<List<Unvan>>> GetAll()
+        public IDataResult<List<Unvan>> GetAll()
         {
-            var result = await _unvanDal.GetAllAsync();
+            var result =  _unvanDal.GetAll();
             if (result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<Unvan>>(result);
@@ -48,9 +48,19 @@ namespace Business.Concrete
             return new ErrorDataResult<List<Unvan>>();
         }
 
-        public async Task<IDataResult<Unvan>> GetById(int id)
+        public IDataResult<List<Unvan>> GetAllFilter(string unvanAdi)
         {
-            var result = await _unvanDal.GetByIdAsync(id);
+            var result =  _unvanDal.GetAllFilter(new Unvan() { UnvanAdi=unvanAdi });
+            if (result != null && result.Count > 0)
+            {
+                return new SuccessDataResult<List<Unvan>>(result);
+            }
+            return new ErrorDataResult<List<Unvan>>();
+        }
+
+        public IDataResult<Unvan> GetById(int id)
+        {
+            var result =  _unvanDal.GetById(id);
             if (result != null)
             {
                 return new SuccessDataResult<Unvan>(result);
@@ -58,14 +68,14 @@ namespace Business.Concrete
             return new ErrorDataResult<Unvan>();
         }
 
-        public async Task<IDataResult<int>> Update(Unvan entity)
+        public IResult Update(Unvan entity)
         {
-            var result = await _unvanDal.UpdateAsync(entity);
+            var result =  _unvanDal.Update(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.UnvanUpdateBasarili);
+                return new SuccessResult( ResponseMessages.UnvanUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.UnvanUpdateBasarisiz);
+            return new ErrorResult( ResponseMessages.UnvanUpdateBasarisiz);
         }
     }
 }

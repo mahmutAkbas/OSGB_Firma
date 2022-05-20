@@ -11,57 +11,62 @@ namespace DataAccess.Concrete.Dapper
 {
     public class IslemlerDal : IIslemlerDal
     {
-        public async Task<int> AddAsync(Islemler entity)
+        public  int Add(Islemler entity)
         {
             string query = "INSERT INTO public.islemler(adi, tip)VALUES (@adi, @tip);";
             using (var connection=new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result=await connection.ExecuteAsync(query,entity);
+                var result= connection.Execute(query,entity);
                 return result;
             }
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public  int Delete(int id)
         {
             string query = "DELETE FROM public.islemler WHERE id=@id;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result =await connection.ExecuteAsync(query, id);
+                var result = connection.Execute(query, id);
                 return result;
             }
         }
 
-        public async Task<List<Islemler>> GetAllAsync()
+        public  List<Islemler> GetAll()
         {
             string query = "SELECT * FROM public.islemler;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result =await connection.QueryAsync<Islemler>(query);
+                var result = connection.Query<Islemler>(query);
                 return result.AsList();
             }
         }
 
-        public async Task<Islemler> GetByIdAsync(int id)
+        public List<Islemler> GetAllFilter(Islemler entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public  Islemler GetById(int id)
         {
             string query = "SELECT * FROM public.islemler WHERE id=@id;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result =await connection.QueryFirstAsync<Islemler>(query, id);
+                var result = connection.QueryFirst<Islemler>(query, id);
                 return result;
             }
         }
 
-        public async Task<int> UpdateAsync(Islemler entity)
+        public  int Update(Islemler entity)
         {
             string query = "UPDATE public.islemler SET  adi=@adi, tip=@tip WHERE id=@id;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result =  connection.Execute(query, entity);
                 return result;
             }
         }

@@ -5,6 +5,6 @@ namespace DataAccess.Abstract
 {
     public interface IUzmanYardimciDal : IBaseDal<Personel>
     {
-        Task<int> DeleteAsync(Personel yardimci);
+        int Delete(Personel yardimci);
     }
 }

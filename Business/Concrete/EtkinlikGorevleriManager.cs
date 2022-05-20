@@ -17,29 +17,29 @@ namespace Business.Concrete
             _etkinlikGorevleriDal = etkinlikGorevleriDal;
         }
 
-        public async Task<IDataResult<int>> Add(EtkinlikGorevleri entity)
+        public IResult Add(EtkinlikGorevleri entity)
         {
-            var result = await _etkinlikGorevleriDal.AddAsync(entity);
+            var result =  _etkinlikGorevleriDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikGoreviAddBasarili);
+                return new SuccessResult( ResponseMessages.EtkinlikGoreviAddBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikGoreviAddBasarisiz);
+            return new ErrorResult( ResponseMessages.EtkinlikGoreviAddBasarisiz);
         }
 
-        public async Task<IDataResult<int>> Delete(EtkinlikGorevleri entity)
+        public IResult Delete(EtkinlikGorevleri entity)
         {
-            var result = await _etkinlikGorevleriDal.DeleteAsync(entity.Id);
+            var result =  _etkinlikGorevleriDal.Delete(entity.Id);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikGoreviDeleteBasarili);
+                return new SuccessResult( ResponseMessages.EtkinlikGoreviDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikGoreviDeleteBasarisiz);
+            return new ErrorResult( ResponseMessages.EtkinlikGoreviDeleteBasarisiz);
         }
 
-        public async Task<IDataResult<List<EtkinlikGorevleri>>> GetAll()
+        public IDataResult<List<EtkinlikGorevleri>> GetAll()
         {
-            var result = await _etkinlikGorevleriDal.GetAllAsync();
+            var result =  _etkinlikGorevleriDal.GetAll();
             if (result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<EtkinlikGorevleri>>(result);
@@ -47,9 +47,14 @@ namespace Business.Concrete
             return new ErrorDataResult<List<EtkinlikGorevleri>>(result);
         }
 
-        public async Task<IDataResult<EtkinlikGorevleri>> GetById(int id)
+        public IDataResult<List<EtkinlikGorevleri>> GetAllFilter(EtkinlikGorevleri entity)
         {
-            var result = await _etkinlikGorevleriDal.GetByIdAsync(id);
+            throw new System.NotImplementedException();
+        }
+
+        public IDataResult<EtkinlikGorevleri> GetById(int id)
+        {
+            var result = _etkinlikGorevleriDal.GetById(id);
             if (result != null)
             {
                 return new SuccessDataResult<EtkinlikGorevleri>(result);
@@ -57,14 +62,14 @@ namespace Business.Concrete
             return new ErrorDataResult<EtkinlikGorevleri>(result);
         }
 
-        public async Task<IDataResult<int>> Update(EtkinlikGorevleri entity)
+        public IResult Update(EtkinlikGorevleri entity)
         {
-            var result = await _etkinlikGorevleriDal.UpdateAsync(entity);
+            var result =  _etkinlikGorevleriDal.Update(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikGoreviUpdateBasarili);
+                return new SuccessResult( ResponseMessages.EtkinlikGoreviUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikGoreviUpdateBasarisiz);
+            return new ErrorResult( ResponseMessages.EtkinlikGoreviUpdateBasarisiz);
 
         }
     }

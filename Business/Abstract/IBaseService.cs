@@ -6,10 +6,11 @@ namespace Business.Abstract
 {
     public interface IBaseService<T>
     {
-        Task<IDataResult<int>> Add(T entity);
-        Task<IDataResult<int>> Update(T entity);
-        Task<IDataResult<T>> GetById(int id);
-        Task<IDataResult<int>> Delete(T entity);
-        Task<IDataResult<List<T>>> GetAll();
+        IResult Add(T entity);
+        IResult Update(T entity);
+        IDataResult<T> GetById(int id);
+        IResult Delete(T entity);
+        IDataResult<List<T>> GetAll();
+       
     }
 }

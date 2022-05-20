@@ -16,29 +16,29 @@ namespace Business.Concrete
         {
             _etkinlikZiyaretDal = etkinlikZiyaretDal;
         }
-        public async Task<IDataResult<int>> Add(EtkinlikZiyaret entity)
+        public IResult Add(EtkinlikZiyaret entity)
         {
-            var result = await _etkinlikZiyaretDal.AddAsync(entity);
+            var result =  _etkinlikZiyaretDal.Add(entity);
             if (result> 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiAddBasarili);
+                return new SuccessResult( ResponseMessages.EtkinlikZiyaretiAddBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiAddBasarisiz);
+            return new ErrorResult( ResponseMessages.EtkinlikZiyaretiAddBasarisiz);
         }
 
-        public async Task<IDataResult<int>> Delete(EtkinlikZiyaret entity)
+        public IResult Delete(EtkinlikZiyaret entity)
         {
-            var result =await _etkinlikZiyaretDal.AddAsync(entity);
+            var result = _etkinlikZiyaretDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiDeleteBasarili);
+                return new SuccessResult( ResponseMessages.EtkinlikZiyaretiDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiDeleteBasarisiz);
+            return new ErrorResult( ResponseMessages.EtkinlikZiyaretiDeleteBasarisiz);
         }
 
-        public async Task<IDataResult<List<EtkinlikZiyaret>>> GetAll()
+        public IDataResult<List<EtkinlikZiyaret>> GetAll()
         {
-            var result =await _etkinlikZiyaretDal.GetAllAsync();
+            var result = _etkinlikZiyaretDal.GetAll();
             if ( result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<EtkinlikZiyaret>>(result);
@@ -46,9 +46,14 @@ namespace Business.Concrete
             return new ErrorDataResult<List<EtkinlikZiyaret>>(result);
         }
 
-        public async Task<IDataResult<EtkinlikZiyaret>> GetById(int id)
+        public IDataResult<List<EtkinlikZiyaret>> GetAllFilter(EtkinlikZiyaret entity)
         {
-            var result =await _etkinlikZiyaretDal.GetByIdAsync(id);
+            throw new System.NotImplementedException();
+        }
+
+        public IDataResult<EtkinlikZiyaret> GetById(int id)
+        {
+            var result = _etkinlikZiyaretDal.GetById(id);
             if (result != null)
             {
                 return new SuccessDataResult<EtkinlikZiyaret>(result);
@@ -56,14 +61,14 @@ namespace Business.Concrete
             return new ErrorDataResult<EtkinlikZiyaret>(result);
         }
 
-        public async Task<IDataResult<int>> Update(EtkinlikZiyaret entity)
+        public IResult Update(EtkinlikZiyaret entity)
         {
-            var result =await _etkinlikZiyaretDal.UpdateAsync(entity);
+            var result = _etkinlikZiyaretDal.Update(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiUpdateBasarili);
+                return new SuccessResult( ResponseMessages.EtkinlikZiyaretiUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.EtkinlikZiyaretiUpdateBasarisiz);
+            return new ErrorResult( ResponseMessages.EtkinlikZiyaretiUpdateBasarisiz);
         }
     }
 }

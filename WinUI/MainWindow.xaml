@@ -12,13 +12,13 @@
     MouseDown="Window_MouseDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    WindowState="Normal"
+    WindowState="Maximized"
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
         <!--#region Bölümler-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="175" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -59,6 +59,7 @@
                     fa:Awesome.Content="WindowMaximize"
                     Click="Maximize_Click"
                     FontSize="20"
+                    IsChecked="True"
                     Style="{StaticResource ToggleButtonPrimary}" />
                 <Button
                     Name="Close"
@@ -75,14 +76,15 @@
 
         <!--#region Yan Menu-->
 
-        <TreeView
+        <ListBox
             Name="MenuList"
             Grid.Row="1"
             Grid.Column="0"
             ItemsSource="{Binding Items}"
-            SelectedItemChanged="ListBoxDemo_SelectedItemChanged">
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+            SelectionChanged="MenuList_SelectionChanged"
+            Style="{StaticResource ListBoxBaseStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
                     <StackPanel Margin="5" Orientation="Horizontal">
                         <fa:FontAwesome
                             Width="20"
@@ -95,9 +97,9 @@
                             FontSize="20"
                             Text="{Binding Title}" />
                     </StackPanel>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <!--#endregion-->
 
         <!--#region  İçerik-->

@@ -17,29 +17,29 @@ namespace Business.Concrete
             _randevuDal = randevuDal;
         }
 
-        public async Task<IDataResult<int>> Add(Randevu entity)
+        public IResult Add(Randevu entity)
         {
-            var result = await _randevuDal.AddAsync(entity);
+            var result =  _randevuDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.RandevuAddBasarili);
+                return new SuccessResult( ResponseMessages.RandevuAddBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.RandevuAddBasarisiz);
+            return new ErrorResult( ResponseMessages.RandevuAddBasarisiz);
         }
 
-        public async Task<IDataResult<int>> Delete(Randevu entity)
+        public IResult Delete(Randevu entity)
         {
-            var result = await _randevuDal.AddAsync(entity);
+            var result =  _randevuDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.RandevuDeleteBasarili);
+                return new SuccessResult( ResponseMessages.RandevuDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.RandevuDeleteBasarisiz);
+            return new ErrorResult( ResponseMessages.RandevuDeleteBasarisiz);
         }
 
-        public async Task<IDataResult<List<Randevu>>> GetAll()
+        public IDataResult<List<Randevu>> GetAll()
         {
-            var result = await _randevuDal.GetAllAsync();
+            var result =  _randevuDal.GetAll();
             if (result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<Randevu>>(result);
@@ -47,9 +47,14 @@ namespace Business.Concrete
             return new ErrorDataResult<List<Randevu>>(result);
         }
 
-        public async Task<IDataResult<Randevu>> GetById(int id)
+        public IDataResult<List<Randevu>> GetAllFilter(Randevu entity)
         {
-            var result = await _randevuDal.GetByIdAsync(id);
+            throw new System.NotImplementedException();
+        }
+
+        public IDataResult<Randevu> GetById(int id)
+        {
+            var result =  _randevuDal.GetById(id);
             if (result != null)
             {
                 return new SuccessDataResult<Randevu>(result);
@@ -57,14 +62,14 @@ namespace Business.Concrete
             return new ErrorDataResult<Randevu>(result);
         }
 
-        public async Task<IDataResult<int>> Update(Randevu entity)
+        public IResult Update(Randevu entity)
         {
-            var result = await _randevuDal.AddAsync(entity);
+            var result =  _randevuDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.RandevuUpdateBasarili);
+                return new SuccessResult( ResponseMessages.RandevuUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.RandevuUpdateBasarisiz);
+            return new ErrorResult( ResponseMessages.RandevuUpdateBasarisiz);
         }
     }
 }

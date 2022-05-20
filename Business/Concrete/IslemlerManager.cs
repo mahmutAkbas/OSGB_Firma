@@ -17,29 +17,29 @@ namespace Business.Concrete
             _islemlerDal = islemlerDal;
         }
 
-        public async Task<IDataResult<int>> Add(Islemler entity)
+        public IResult Add(Islemler entity)
         {
-            var result = await _islemlerDal.AddAsync(entity);
+            var result =  _islemlerDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.IslemlerAddBasarili);
+                return new SuccessResult( ResponseMessages.IslemlerAddBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.IslemlerAddBasarisiz);
+            return new ErrorResult( ResponseMessages.IslemlerAddBasarisiz);
         }
 
-        public async Task<IDataResult<int>> Delete(Islemler entity)
+        public IResult Delete(Islemler entity)
         {
-            var result = await _islemlerDal.DeleteAsync(entity.Id);
+            var result =  _islemlerDal.Delete(entity.Id);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.IslemlerDeleteBasarili);
+                return new SuccessResult( ResponseMessages.IslemlerDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.IslemlerDeleteBasarisiz);
+            return new ErrorResult( ResponseMessages.IslemlerDeleteBasarisiz);
         }
 
-        public async Task<IDataResult<List<Islemler>>> GetAll()
+        public IDataResult<List<Islemler>> GetAll()
         {
-            var result = await _islemlerDal.GetAllAsync();
+            var result =  _islemlerDal.GetAll();
             if (result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<Islemler>>(result);
@@ -47,9 +47,14 @@ namespace Business.Concrete
             return new ErrorDataResult<List<Islemler>>(result);
         }
 
-        public async Task<IDataResult<Islemler>> GetById(int id)
+        public IDataResult<List<Islemler>> GetAllFilter(Islemler entity)
         {
-            var result = await _islemlerDal.GetByIdAsync(id);
+            throw new System.NotImplementedException();
+        }
+
+        public IDataResult<Islemler> GetById(int id)
+        {
+            var result =  _islemlerDal.GetById(id);
             if (result != null)
             {
                 return new SuccessDataResult<Islemler>(result);
@@ -57,14 +62,14 @@ namespace Business.Concrete
             return new ErrorDataResult<Islemler>(result);
         }
 
-        public async Task<IDataResult<int>> Update(Islemler entity)
+        public IResult Update(Islemler entity)
         {
-            var result = await _islemlerDal.UpdateAsync(entity);
+            var result =  _islemlerDal.Update(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.IslemlerUpdateBasarili);
+                return new SuccessResult( ResponseMessages.IslemlerUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.IslemlerUpdateBasarisiz);
+            return new ErrorResult( ResponseMessages.IslemlerUpdateBasarisiz);
         }
     }
 }

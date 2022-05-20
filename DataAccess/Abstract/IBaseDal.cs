@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
     public interface IBaseDal<T>
     {
-        Task<int> AddAsync(T entity);
-        Task<int> DeleteAsync(int id);
-        Task<int> UpdateAsync(T entity);
-        Task<T> GetByIdAsync(int id);
-        Task<List<T>> GetAllAsync();
+        int Add(T entity);
+        int Delete(int id);
+        int Update(T entity);
+        T GetById(int id);      
+        List<T> GetAll();
     }
 }

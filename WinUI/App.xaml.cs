@@ -1,11 +1,6 @@
 ﻿using HandyControl.Tools;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace WinUI
 {
@@ -16,9 +11,8 @@ namespace WinUI
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-          
+            ConfigHelper.Instance.SetLang("en");
             base.OnStartup(e);
-            ConfigHelper.Instance.SetLang("Tr");
         }
     }
 }

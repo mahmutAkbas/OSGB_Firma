@@ -9,57 +9,62 @@ namespace DataAccess.Concrete.Dapper
 {
     public class EtkinlikGorevliileriDal : IEtkinlikGorevlileriDal
     {
-        public async Task<int> AddAsync(EtkinlikGorevlileri entity)
+        public  int Add(EtkinlikGorevlileri entity)
         {
             string query = "INSERT INTO public.etkinlik_gorevlileri(personelid, yetki,etkinlikziyaretid)VALUES (@personelid, @yetki,@etkinlikziyaretid);";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result =  connection.Execute(query, entity);
                 return result;
             }
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public  int Delete(int id)
         {
             string query = "DELETE FROM public.etkinlik_gorevlileri WHERE id=@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, id);
+                var result =  connection.Execute(query, id);
                 return result;
             }
         }
 
-        public async Task<List<EtkinlikGorevlileri>> GetAllAsync()
+        public  List<EtkinlikGorevlileri> GetAll()
         {
             string query = "SELECT * FROM public.etkinlik_gorevlileri; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<EtkinlikGorevlileri>(query);
+                var result =  connection.Query<EtkinlikGorevlileri>(query);
                 return result.AsList();
             }
         }
 
-        public async Task<EtkinlikGorevlileri> GetByIdAsync(int id)
+        public List<EtkinlikGorevlileri> GetAllFilter(EtkinlikGorevlileri entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public  EtkinlikGorevlileri GetById(int id)
         {
             string query = "SELECT * FROM public.etkinlik_gorevlileri WHERE id=@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryFirstAsync<EtkinlikGorevlileri>(query, id);
+                var result =  connection.QueryFirst<EtkinlikGorevlileri>(query, id);
                 return result;
             }
         }
 
-        public async Task<int> UpdateAsync(EtkinlikGorevlileri entity)
+        public  int Update(EtkinlikGorevlileri entity)
         {
             string query = "UPDATE public.etkinlik_gorevlileri SET personelid =@personelid, yetki =@yetki, etkinlikziyaretid =@etkinlikziyaretid WHERE id =@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result =  connection.Execute(query, entity);
                 return result;
             }
         }

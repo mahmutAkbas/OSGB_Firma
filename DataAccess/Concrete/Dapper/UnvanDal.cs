@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using DataAccess.Abstract;
-using Entities.Concrete;
 using Entities.Concrete.Data;
 using Npgsql;
 using System.Collections.Generic;
@@ -10,57 +9,69 @@ namespace DataAccess.Concrete.Dapper
 {
     public class UnvanDal : IUnvanDal
     {
-        public async Task<int> AddAsync(Unvan entity)
+        public  int Add(Unvan entity)
         {
             var query = "INSERT INTO unvan (unvanadi) VALUES (@UnvanAdi);";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result =  connection.Execute(query, entity);
                 return result;
             }
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public  int Delete(int id)
         {
             string query = "DELETE FROM public.unvan WHERE id=@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, new {id= id });
+                var result =  connection.Execute(query, new { id = id });
                 return result;
             }
         }
 
-        public async Task<List<Unvan>> GetAllAsync()
+        public  List<Unvan> GetAll()
         {
             string query = "SELECT id, unvanadi FROM public.unvan;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<Unvan>(query);
+                var result =  connection.Query<Unvan>(query);
                 return result.AsList();
             }
         }
 
-        public async Task<Unvan> GetByIdAsync(int id)
+        public  List<Unvan> GetAllFilter(Unvan entity)
         {
-            string query = "SELECT id, unvanadi FROM public.unvan WHERE id=@id;";
+            string query = "SELECT * FROM public.unvan WHERE unvanadi LIKE CONCAT('%',@UnvanAdi,'%');";
+            string filter = $"'%{entity.UnvanAdi}%'";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryFirstAsync<Unvan>(query, id);
+                var result =  connection.Query<Unvan>(query, new { UnvanAdi=entity.UnvanAdi });
+                return result.AsList();
+            }
+        }
+
+        public  Unvan GetById(int id)
+        {
+            string query = "SELECT * FROM public.unvan WHERE id=@id;";
+            using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
+            {
+                connection.Open();
+                var result =  connection.QueryFirst<Unvan>(query, id);
                 return result;
             }
         }
 
-        public async Task<int> UpdateAsync(Unvan entity)
+        public  int Update(Unvan entity)
         {
             string query = "UPDATE public.unvan SET unvanadi = @UnvanAdi WHERE id = @id;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result =  connection.Execute(query, entity);
                 return result;
             }
         }

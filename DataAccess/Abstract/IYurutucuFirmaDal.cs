@@ -7,5 +7,6 @@ namespace DataAccess.Abstract
 {
     public interface IYurutucuFirmaDal:IBaseDal<YurutucuFirma>
     {
+        List<YurutucuFirma> GetAllFilter(string adi);
     }
 }

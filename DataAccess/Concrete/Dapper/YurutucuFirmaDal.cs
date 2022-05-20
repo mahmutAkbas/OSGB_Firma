@@ -9,57 +9,73 @@ namespace DataAccess.Concrete.Dapper
 {
     public class YurutucuFirmaDal : IYurutucuFirmaDal
     {
-        public async Task<int> AddAsync(YurutucuFirma entity)
+        public  int Add(YurutucuFirma entity)
         {
-            string query = "INSERT INTO public.yurutucu_firma(adi, kayittarihi) VALUES( ?, ?); ";
+            string query = "INSERT INTO public.yurutucu_firma(adi, kayittarihi) VALUES( @adi, @kayittarihi); ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result =  connection.Execute(query, entity);
                 return result;
             }
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public  int Delete(int id)
         {
             string query = "DELETE FROM public.yurutucu_firma WHERE id=@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, id);
+                var result =  connection.Execute(query, id);
                 return result;
             }
         }
 
-        public async Task<List<YurutucuFirma>> GetAllAsync()
+        public  List<YurutucuFirma> GetAll()
         {
             string query = "SELECT * FROM public.yurutucu_firma  ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<YurutucuFirma>(query);
+                var result =  connection.Query<YurutucuFirma>(query);
                 return result.AsList();
             }
         }
 
-        public async Task<YurutucuFirma> GetByIdAsync(int id)
+        public List<YurutucuFirma> GetAllFilter(YurutucuFirma entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<YurutucuFirma> GetAllFilter(string adi)
+        {
+            string query = "SELECT * FROM public.yurutucu_firma WHERE adi LIKE CONCAT('%',@adi,'%');";
+            using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
+            {
+                connection.Open();
+                var result = connection.Query<YurutucuFirma>(query, new { adi=adi});
+                return result.AsList();
+            }
+        }
+
+        public  YurutucuFirma GetById(int id)
         {
             string query = "SELECT * FROM public.yurutucu_firma WHERE id=@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryFirstAsync<YurutucuFirma>(query, id);
+                var result =  connection.QueryFirst<YurutucuFirma>(query, id);
                 return result;
             }
         }
 
-        public async Task<int> UpdateAsync(YurutucuFirma entity)
+        public  int Update(YurutucuFirma entity)
         {
             string query = "UPDATE public.yurutucu_firma SET  adi =@adi, kayittarihi =@kayittarihi     WHERE id =@id; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result =  connection.Execute(query, entity);
                 return result;
             }
         }

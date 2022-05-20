@@ -17,29 +17,29 @@ namespace Business.Concrete
             _yurutucuFirmaDal = yurutucuFirmaDal;
         }
 
-        public async Task<IDataResult<int>> Add(YurutucuFirma entity)
+        public IResult Add(YurutucuFirma entity)
         {
-            var result =await _yurutucuFirmaDal.AddAsync(entity);
+            var result = _yurutucuFirmaDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.YurutucuFirmaAddBasarili);
+                return new SuccessResult( ResponseMessages.YurutucuFirmaAddBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.YurutucuFirmaAddBasarisiz);
+            return new ErrorResult( ResponseMessages.YurutucuFirmaAddBasarisiz);
         }
 
-        public async Task<IDataResult<int>> Delete(YurutucuFirma entity)
+        public IResult Delete(YurutucuFirma entity)
         {
-            var result =await _yurutucuFirmaDal.DeleteAsync(entity.Id);
+            var result = _yurutucuFirmaDal.Delete(entity.Id);
             if ( result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.YurutucuFirmaDeleteBasarili);
+                return new SuccessResult( ResponseMessages.YurutucuFirmaDeleteBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.YurutucuFirmaDeleteBasarisiz);
+            return new ErrorResult( ResponseMessages.YurutucuFirmaDeleteBasarisiz);
         }
 
-        public async Task<IDataResult<List<YurutucuFirma>>> GetAll()
+        public IDataResult<List<YurutucuFirma>> GetAll()
         {
-            var result =await _yurutucuFirmaDal.GetAllAsync();
+            var result = _yurutucuFirmaDal.GetAll();
             if ( result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<YurutucuFirma>>(result);
@@ -47,9 +47,19 @@ namespace Business.Concrete
             return new ErrorDataResult<List<YurutucuFirma>>(result);
         }
 
-        public async Task<IDataResult<YurutucuFirma>> GetById(int id)
+        public IDataResult<List<YurutucuFirma>> GetAllFilter(string adi)
         {
-            var result =await _yurutucuFirmaDal.GetByIdAsync(id);
+            var result = _yurutucuFirmaDal.GetAllFilter(adi);
+            if (result != null && result.Count > 0)
+            {
+                return new SuccessDataResult<List<YurutucuFirma>>(result);
+            }
+            return new ErrorDataResult<List<YurutucuFirma>>(result);
+        }
+
+        public IDataResult<YurutucuFirma> GetById(int id)
+        {
+            var result = _yurutucuFirmaDal.GetById(id);
             if ( result != null)
             {
                 return new SuccessDataResult<YurutucuFirma>(result);
@@ -57,14 +67,14 @@ namespace Business.Concrete
             return new ErrorDataResult<YurutucuFirma>(result);
         }
 
-        public async Task<IDataResult<int>> Update(YurutucuFirma entity)
+        public IResult Update(YurutucuFirma entity)
         {
-            var result =await _yurutucuFirmaDal.UpdateAsync(entity);
+            var result = _yurutucuFirmaDal.Update(entity);
             if ( result > 0)
             {
-                return new SuccessDataResult<int>(result, ResponseMessages.YurutucuFirmaUpdateBasarili);
+                return new SuccessResult( ResponseMessages.YurutucuFirmaUpdateBasarili);
             }
-            return new ErrorDataResult<int>(result, ResponseMessages.YurutucuFirmaUpdateBasarisiz);
+            return new ErrorResult( ResponseMessages.YurutucuFirmaUpdateBasarisiz);
         }
     }
 }

@@ -1,65 +1,87 @@
 ﻿using Dapper;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
+using Entities.DTOs;
 using Npgsql;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.Dapper
 {
     public class PersonelDal : IPersonelDal
     {
-        public async Task<int> AddAsync(Personel entity)
+        public int Add(Personel entity)
         {
             string query = "INSERT INTO public.personel (adi, soyadi, telefon, kayittarihi, silinmedurumu, silinmetarihi, unvanid) VALUES (@adi, @soyadi, @telefon, @kayittarihi, @silinmedurumu, @silinmetarihi, @unvanid);";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, entity);
+                var result = connection.Execute(query, entity);
                 return result;
             }
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public int Delete(int id)
         {
             string query = "DELETE FROM public.personel WHERE id=@id ;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(query, id);
+                var result = connection.Execute(query, id);
                 return result;
             }
         }
 
-        public async Task<List<Personel>> GetAllAsync()
+        public List<Personel> GetAll()
         {
-            string query = "SELECT * FROM public.personel WHERE id=@id ;";
+            string query = "SELECT * FROM public.personel ;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<Personel>(query);
+                var result = connection.Query<Personel>(query);
                 return result.AsList();
             }
         }
 
-        public async Task<Personel> GetByIdAsync(int id)
+        public List<PersonelDto> GetAllFilter(string personelAdi, bool silinmeDurumu)
+        {
+            string query = "SELECT p.*,u.unvanadi FROM public.personel p INNER JOIN public.unvan u ON p.unvanid = u.id  WHERE adi LIKE CONCAT('%',@adi,'%') AND p.silinmedurumu=@silinmedurumu;";
+            using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
+            {
+                connection.Open();
+                var result = connection.Query<PersonelDto>(query, new { adi = personelAdi, silinmedurumu = silinmeDurumu });
+                return result.AsList();
+            }
+        }
+
+        public Personel GetById(int id)
         {
             string query = "SELECT * FROM public.personel WHERE id=@id ;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = await connection.QueryFirstAsync<Personel>(query, id);
+                var result = connection.QueryFirst<Personel>(query, id);
                 return result;
             }
         }
 
-        public Task<int> UpdateAsync(Personel entity)
+        public List<PersonelDto> GetAllPersonelDto(bool silinenDurumu)
+        {
+            string query = "SELECT p.*,u.unvanadi FROM public.personel p INNER JOIN public.unvan u ON p.unvanid = u.id WHERE p.silinmedurumu=@silinmedurumu;";
+            using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
+            {
+                connection.Open();
+                var result = connection.Query<PersonelDto>(query, new { silinmedurumu = silinenDurumu });
+                return result.AsList();
+            }
+        }
+
+        public int Update(Personel entity)
         {
             string query = "UPDATE public.personel SET  adi=@adi, soyadi=@soyadi, telefon=@telefon, kayittarihi=@kayittarihi, silinmedurumu=@silinmedurumu, silinmetarihi=@silinmetarihi, unvanid=@unvanid WHERE id=@id;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = connection.ExecuteAsync(query, entity);
+                var result = connection.Execute(query, entity);
                 return result;
             }
         }
