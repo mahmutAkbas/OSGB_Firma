@@ -15,5 +15,10 @@ namespace Entities.DTOs
         public bool SilinmeDurumu { get; set; }
         public DateTime SilinmeTarihi { get; set; }
         public int UnvanId { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Adi} {Soyadi}";
+        }
     }
 }

@@ -23,7 +23,12 @@ namespace WinUI.Views
         {
             var result = _faktory.Unvans.Add(new Entities.Concrete.Data.Unvan() { UnvanAdi = EditUnvanAdi.Text });
             HandyControl.Controls.MessageBox.Show(result.Message, "Unvan Ekle", MessageBoxButton.OK, MessageBoxImage.Information);
-            Listele();
+            if (result.Success)
+            {
+                Listele();
+                Temizle();
+            }
+
         }
         private void BtnUnvanSil_Click(object sender, RoutedEventArgs e)
         {
@@ -36,7 +41,8 @@ namespace WinUI.Views
                 {
                     var resultDelete = _faktory.Unvans.Delete(unvan);
                     HandyControl.Controls.MessageBox.Show(resultDelete.Message, "Unvan Delete", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Listele();
+                    if (resultDelete.Success)
+                        Listele();
                 }
             }
         }
@@ -46,12 +52,13 @@ namespace WinUI.Views
             if (result == MessageBoxResult.Yes)
             {
                 _unvan.UnvanAdi = EditUnvanAdi.Text;
-                var resultDelete = _faktory.Unvans.Update(_unvan);
-                HandyControl.Controls.MessageBox.Show(resultDelete.Message, "Unvan Update", MessageBoxButton.OK, MessageBoxImage.Information);
-                Listele();
-                BtnEkle.IsEnabled = true;
-                BtnGuncelle.IsEnabled = false;
-                EditUnvanAdi.Text = "";
+                var resultUpdate = _faktory.Unvans.Update(_unvan);
+                HandyControl.Controls.MessageBox.Show(resultUpdate.Message, "Unvan Update", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (resultUpdate.Success)
+                {
+                    Listele();
+                    Temizle();
+                }
             }
         }
 

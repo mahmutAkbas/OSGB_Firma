@@ -3,6 +3,6 @@
     public class Islemler:BaseEntity
     {
         public string Adi { get; set; }
-        public string Tip { get; set; }
+        public int Tip { get; set; }
     }
 }

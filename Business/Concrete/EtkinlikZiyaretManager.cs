@@ -4,8 +4,8 @@ using Business.Utilities.Result.Abstract;
 using Business.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
+using Entities.DTOs;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -18,12 +18,24 @@ namespace Business.Concrete
         }
         public IResult Add(EtkinlikZiyaret entity)
         {
-            var result =  _etkinlikZiyaretDal.Add(entity);
-            if (result> 0)
+            var result = _etkinlikZiyaretDal.Add(entity);
+            if (result > 0)
             {
-                return new SuccessResult( ResponseMessages.EtkinlikZiyaretiAddBasarili);
+                    return new SuccessResult(ResponseMessages.EtkinlikZiyaretiAddBasarili);
             }
-            return new ErrorResult( ResponseMessages.EtkinlikZiyaretiAddBasarisiz);
+            return new ErrorResult(ResponseMessages.EtkinlikZiyaretiAddBasarisiz);
+        }
+
+        public IDataResult<int> AddCustom(EtkinlikZiyaret entity)
+        {
+            var result = _etkinlikZiyaretDal.Add(entity);
+            if (result > 0)
+            {
+                var resultId = _etkinlikZiyaretDal.GetByZiyaretId(entity.RandevuId);
+                if (resultId > 0)
+                    return new SuccessDataResult<int>(resultId, ResponseMessages.EtkinlikZiyaretiAddBasarili);
+            }
+            return new ErrorDataResult<int>(0,ResponseMessages.EtkinlikZiyaretiAddBasarisiz);
         }
 
         public IResult Delete(EtkinlikZiyaret entity)
@@ -31,25 +43,21 @@ namespace Business.Concrete
             var result = _etkinlikZiyaretDal.Add(entity);
             if (result > 0)
             {
-                return new SuccessResult( ResponseMessages.EtkinlikZiyaretiDeleteBasarili);
+                return new SuccessResult(ResponseMessages.EtkinlikZiyaretiDeleteBasarili);
             }
-            return new ErrorResult( ResponseMessages.EtkinlikZiyaretiDeleteBasarisiz);
+            return new ErrorResult(ResponseMessages.EtkinlikZiyaretiDeleteBasarisiz);
         }
 
         public IDataResult<List<EtkinlikZiyaret>> GetAll()
         {
             var result = _etkinlikZiyaretDal.GetAll();
-            if ( result != null && result.Count > 0)
+            if (result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<EtkinlikZiyaret>>(result);
             }
             return new ErrorDataResult<List<EtkinlikZiyaret>>(result);
         }
 
-        public IDataResult<List<EtkinlikZiyaret>> GetAllFilter(EtkinlikZiyaret entity)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public IDataResult<EtkinlikZiyaret> GetById(int id)
         {
@@ -61,14 +69,34 @@ namespace Business.Concrete
             return new ErrorDataResult<EtkinlikZiyaret>(result);
         }
 
+        public IDataResult<List<EtkinlikZiyaretDto>> GetEtkinlikZiyaretByFirmaAdi(string firmaAdi)
+        {
+            var result = _etkinlikZiyaretDal.GetEtkinlikZiyaretByFirmaAdi(firmaAdi);
+            if (result != null && result.Count > 0)
+            {
+                return new SuccessDataResult<List<EtkinlikZiyaretDto>>(result);
+            }
+            return new ErrorDataResult<List<EtkinlikZiyaretDto>>(result);
+        }
+
+        public IDataResult<List<EtkinlikZiyaretDto>> GetEtkinlikZiyaretDto()
+        {
+            var result = _etkinlikZiyaretDal.GetEtkinlikZiyaretDto();
+            if (result != null && result.Count > 0)
+            {
+                return new SuccessDataResult<List<EtkinlikZiyaretDto>>(result);
+            }
+            return new ErrorDataResult<List<EtkinlikZiyaretDto>>(result);
+        }
+
         public IResult Update(EtkinlikZiyaret entity)
         {
             var result = _etkinlikZiyaretDal.Update(entity);
             if (result > 0)
             {
-                return new SuccessResult( ResponseMessages.EtkinlikZiyaretiUpdateBasarili);
+                return new SuccessResult(ResponseMessages.EtkinlikZiyaretiUpdateBasarili);
             }
-            return new ErrorResult( ResponseMessages.EtkinlikZiyaretiUpdateBasarisiz);
+            return new ErrorResult(ResponseMessages.EtkinlikZiyaretiUpdateBasarisiz);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="WinUI.Views.RandevuView"
+    x:Class="WinUI.Views.IslemlerView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,26 +18,25 @@
         <GroupBox
             Grid.Column="0"
             Margin="5"
-            Header="Randevu Sayfası"
+            Header="İşlem Sayfası"
             Style="{StaticResource GroupBoxTab}">
             <hc:UniformSpacingPanel Orientation="Vertical" Spacing="10">
-
-                <hc:DatePicker
-                    Name="DppRandevuTarihi"
-                    hc:InfoElement.Necessary="True"
-                    hc:InfoElement.Placeholder="Örn : 02/02/2022"
-                    hc:InfoElement.Title="Randevu Tarihi" />
-
                 <TextBox
-                    x:Name="EditAciklama"
-                    Height="150"
-                    HorizontalAlignment="Stretch"
+                    Name="EditIslemAdi"
                     hc:InfoElement.Necessary="True"
-                    hc:InfoElement.Placeholder="Örn : Açıklama "
-                    hc:InfoElement.Title="Açıklama"
-                    AcceptsReturn="True"
-                    Style="{StaticResource TextBoxExtendBaseStyle}"
-                    VerticalScrollBarVisibility="Auto" />
+                    hc:InfoElement.Placeholder="Örn : Çalışan Muayenesi"
+                    hc:InfoElement.Title="İşlem Adı"
+                    Style="{StaticResource TextBoxExtend}" />
+                <ComboBox
+                    Name="CbIslemTip"
+                    hc:InfoElement.Necessary="True"
+                    hc:InfoElement.Placeholder="Örn : Hekim"
+                    hc:InfoElement.Title="İşlem Adı"
+                    Style="{StaticResource ComboBoxExtend}">
+                    <ComboBoxItem Content="Hekim" Tag="1" />
+                    <ComboBoxItem Content="İş Güvenlik Uzmanı" Tag="2" />
+                </ComboBox>
+
                 <UniformGrid Columns="4" FirstColumn="1">
                     <Button
                         Name="BtnEkle"
@@ -90,19 +89,18 @@
         <GroupBox
             Grid.Column="1"
             Margin="5"
-            Header="Randevu Liste Sayfası"
+            Header="İşlem Liste Sayfası"
             Style="{StaticResource GroupBoxTab}">
             <hc:UniformSpacingPanel Orientation="Vertical" Spacing="10">
-                <hc:DatePicker
-                    Name="DpRandevuTarihi"
+                <hc:SearchBar
+                    Name="SbIslemAdi"
                     hc:InfoElement.Placeholder="Örn : 02/02/2022"
                     hc:InfoElement.Title="Randevu Tarihi"
-                    SelectedDateChanged="DpRandevuTarihi_SelectedDateChanged"
                     ShowClearButton="True"
-                    Style="{StaticResource DatePickerPlusBaseStyle}" />
+                    TextChanged="SbIslemAdi_TextChanged" />
 
                 <DataGrid
-                    x:Name="DgFirmaList"
+                    x:Name="DgIslemList"
                     Grid.Row="1"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -115,31 +113,31 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding RandevuTarihi}"
-                            Header="Tarih" />
+                            Binding="{Binding Adi}"
+                            Header="Firma Adı" />
                         <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding Onay}"
-                            Header="Onay" />
+                            Binding="{Binding KayitTarihi}"
+                            Header="Kayıt Tarihi" />
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Button
-                                            x:Name="BtnRandevuDetay"
+                                            x:Name="BtnIslemDetay"
                                             Width="75"
                                             Height="50"
                                             Margin="5,0,0,0"
-                                            Click="BtnRandevuDetay_Click"
+                                            Click="BtnIslemDetay_Click"
                                             Style="{StaticResource ButtonInfo}">
                                             <fa:FontAwesome Icon="Search" />
                                         </Button>
                                         <Button
-                                            x:Name="BtnRandevuSil"
+                                            x:Name="BtnIslemSil"
                                             Width="75"
                                             Height="50"
                                             Margin="5,0,0,0"
-                                            Click="BtnRandevuSil_Click"
+                                            Click="BtnIslemSil_Click"
                                             Style="{StaticResource ButtonDanger}">
                                             <fa:FontAwesome Icon="Remove" />
                                         </Button>

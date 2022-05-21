@@ -3,6 +3,6 @@
     public class EtkinlikZiyaret : BaseEntity
     {
         public int RandevuId { get; set; }
-        public int AylikUcret { get; set; }
+        public decimal AylikUcret { get; set; }
     }
 }

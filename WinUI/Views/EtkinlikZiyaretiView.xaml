@@ -1,0 +1,88 @@
+﻿<UserControl
+    x:Class="WinUI.Views.EtkinlikZiyaretiView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:WinUI.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid>
+        <GroupBox
+            Grid.Column="0"
+            Margin="5"
+            Header="Ziyaret Listesi"
+            Style="{StaticResource GroupBoxTab}">
+            <hc:UniformSpacingPanel Orientation="Vertical" Spacing="10">
+                <UniformGrid Columns="3">
+                    <hc:SearchBar
+                        Name="SbFirmaAdi"
+                        Margin="3"
+                        hc:InfoElement.Placeholder="Örn : A Firması"
+                        hc:InfoElement.Title="Firma Adi"
+                        ShowClearButton="True"
+                        Style="{StaticResource SearchBarPlus}"
+                        TextChanged="SbFirmaAdi_TextChanged" />
+
+                </UniformGrid>
+
+                <DataGrid
+                    x:Name="DgRandevuList"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False"
+                    Background="#FF232326"
+                    CanUserSortColumns="True"
+                    GridLinesVisibility="Horizontal"
+                    HeadersVisibility="Column"
+                    RowDetailsVisibilityMode="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding RandevuTarihi}"
+                            Header="Randevu Tarihi" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding AylikUcret}"
+                            Header="Aylık Üçret" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Adi}"
+                            Header="Firma Adı" />
+
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button
+                                            x:Name="BtnGorevliEkle"
+                                            Width="75"
+                                            Height="50"
+                                            Margin="5,0,0,0"
+                                            Click="BtnGorevliEkle_Click"
+                                            Style="{StaticResource ButtonPrimary}">
+                                            <fa:FontAwesome Icon="Users" />
+                                        </Button>
+                                        <Button
+                                            x:Name="BtnGorevEkle"
+                                            Width="75"
+                                            Height="50"
+                                            Margin="5,0,0,0"
+                                            Click="BtnGorevEkle_Click"
+                                            Style="{StaticResource ButtonSuccess}">
+                                            <fa:FontAwesome Icon="Tasks" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </hc:UniformSpacingPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

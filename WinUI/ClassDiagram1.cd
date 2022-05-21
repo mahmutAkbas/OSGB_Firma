@@ -1,232 +1,125 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Business.Concrete.EtkinlikGorevleriManager" BaseTypeListCollapsed="true">
-    <Position X="32.5" Y="0.5" Width="1.5" />
+    <Position X="12" Y="7" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Concrete.EtkinlikGorevlileriManager" BaseTypeListCollapsed="true">
-    <Position X="36.25" Y="0.5" Width="1.5" />
+    <Position X="14" Y="7" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Concrete.EtkinlikZiyaretManager" BaseTypeListCollapsed="true">
-    <Position X="37" Y="3.5" Width="1.5" />
+    <Position X="16.25" Y="7" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Concrete.IslemlerManager" BaseTypeListCollapsed="true">
-    <Position X="38.25" Y="0.75" Width="1.5" />
+    <Position X="18.25" Y="10" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Concrete.PersonelManager" BaseTypeListCollapsed="true">
-    <Position X="30.5" Y="3.5" Width="1.5" />
+    <Position X="14" Y="9.75" Width="1.5" />
     <TypeIdentifier />
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.1" />
   </Class>
   <Class Name="Business.Concrete.RandevuManager" BaseTypeListCollapsed="true">
-    <Position X="34.5" Y="0.5" Width="1.5" />
+    <Position X="16.25" Y="10" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Concrete.UnvanManager" BaseTypeListCollapsed="true">
-    <Position X="32.75" Y="3.5" Width="1.5" />
+    <Position X="12" Y="9.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Concrete.YurutucuFirmaManager" BaseTypeListCollapsed="true">
-    <Position X="34.75" Y="3.5" Width="1.5" />
+    <Position X="18.25" Y="7" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Business.Constant.ResponseMessages" Collapsed="true">
-    <Position X="28.5" Y="3.75" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
   <Class Name="Business.Utilities.Result.Concrete.DataResult&lt;T&gt;" Collapsed="true">
-    <Position X="11.5" Y="11.5" Width="1.5" />
+    <Position X="24.75" Y="9" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Utilities.Result.Concrete.ErrorDataResult&lt;T&gt;" Collapsed="true">
-    <Position X="12.5" Y="13" Width="1.75" />
+    <Position X="26" Y="10.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Business.Utilities.Result.Concrete.ErrorResult" Collapsed="true">
-    <Position X="15" Y="11.5" Width="1.5" />
+    <Position X="21.5" Y="9" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Business.Utilities.Result.Concrete.Result" Collapsed="true">
-    <Position X="11.5" Y="10.25" Width="1.5" />
+    <Position X="24.75" Y="7.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Utilities.Result.Concrete.SuccessDataResult&lt;T&gt;" Collapsed="true">
-    <Position X="10" Y="13" Width="1.75" />
+    <Position X="23.75" Y="10.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Business.Utilities.Result.Concrete.SuccessResult" Collapsed="true">
-    <Position X="7.75" Y="11.5" Width="1.5" />
+    <Position X="28.25" Y="9" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="Business.DataFaktory">
-    <Position X="30.5" Y="0.5" Width="1.5" />
+  <Class Name="Business.Utilities.ValidationRules.FluentValidation.PersonelValidator">
+    <Position X="30.75" Y="7.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="Entities.Concrete.Data.BaseEntity">
-    <Position X="16" Y="3.5" Width="1.5" />
+  <Class Name="Business.Utilities.ValidationRules.ValidationTool">
+    <Position X="32.5" Y="7.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="Entities.Concrete.Data.EtkinlikGorevleri" Collapsed="true">
-    <Position X="12.75" Y="5.5" Width="1.5" />
+  <Class Name="Business.DataFaktory" Collapsed="true">
+    <Position X="26.75" Y="1.25" Width="1.5" />
     <TypeIdentifier />
-  </Class>
-  <Class Name="Entities.Concrete.Data.EtkinlikGorevlileri" Collapsed="true">
-    <Position X="19.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Entities.Concrete.Data.EtkinlikZiyaret" Collapsed="true">
-    <Position X="8.25" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Entities.Concrete.Data.Islemler" Collapsed="true">
-    <Position X="15" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Entities.Concrete.Data.Personel" Collapsed="true">
-    <Position X="21.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Entities.Concrete.Data.Randevu" Collapsed="true">
-    <Position X="10.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Entities.Concrete.Data.Unvan" Collapsed="true">
-    <Position X="17.25" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Entities.Concrete.Data.YurutucuFirma" Collapsed="true">
-    <Position X="24" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="DataAccess.Concrete.Dapper.EtkinlikGorevleriDal" BaseTypeListCollapsed="true">
-    <Position X="21.5" Y="11" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="DataAccess.Concrete.Dapper.EtkinlikGorevliileriDal" BaseTypeListCollapsed="true">
-    <Position X="25" Y="11" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="DataAccess.Concrete.Dapper.EtkinlikZiyaretDal" BaseTypeListCollapsed="true">
-    <Position X="23.25" Y="14.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="DataAccess.Concrete.Dapper.IslemlerDal" BaseTypeListCollapsed="true">
-    <Position X="25" Y="14.5" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="DataAccess.Concrete.Dapper.PersonelDal" BaseTypeListCollapsed="true">
-    <Position X="26.75" Y="11" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="DataAccess.Concrete.Dapper.RandevuDal" BaseTypeListCollapsed="true">
-    <Position X="21.5" Y="14" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="DataAccess.Concrete.Dapper.UnvanDal" BaseTypeListCollapsed="true">
-    <Position X="23.25" Y="11.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="Business.Abstract.IBaseService&lt;T&gt;">
-    <Position X="17.75" Y="6.25" Width="1.5" />
+    <Position X="21.75" Y="1.75" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IEtkinlikGorevleriService" Collapsed="true">
-    <Position X="10.75" Y="8.5" Width="2" />
+  <Interface Name="Business.Abstract.IEtkinlikGorevleriService">
+    <Position X="18.25" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IEtkinlikGorevlileriService" Collapsed="true">
-    <Position X="15.75" Y="8.5" Width="2" />
+  <Interface Name="Business.Abstract.IEtkinlikGorevlileriService">
+    <Position X="25" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IEtkinlikZiyaretService" Collapsed="true">
-    <Position X="21.25" Y="8.5" Width="2" />
+  <Interface Name="Business.Abstract.IEtkinlikZiyaretService">
+    <Position X="13.75" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IIslemlerService" Collapsed="true">
-    <Position X="24" Y="8.5" Width="1.5" />
+  <Interface Name="Business.Abstract.IIslemlerService">
+    <Position X="20.5" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IPersonelService" Collapsed="true">
-    <Position X="26.25" Y="8.5" Width="1.75" />
+  <Interface Name="Business.Abstract.IPersonelService">
+    <Position X="27.25" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IRandevuService" Collapsed="true">
-    <Position X="8.25" Y="8.5" Width="1.75" />
+  <Interface Name="Business.Abstract.IRandevuService">
+    <Position X="16" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IUnvanService" Collapsed="true">
-    <Position X="13.5" Y="8.5" Width="1.5" />
+  <Interface Name="Business.Abstract.IUnvanService">
+    <Position X="22.75" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="Business.Abstract.IYurutucuFirmaService" Collapsed="true">
-    <Position X="18.5" Y="8.5" Width="2" />
+  <Interface Name="Business.Abstract.IYurutucuFirmaService">
+    <Position X="29.5" Y="5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="Business.Utilities.Result.Abstract.IDataResult&lt;T&gt;" Collapsed="true">
-    <Position X="18.5" Y="11.5" Width="1.5" />
+    <Position X="21.25" Y="12" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="Business.Utilities.Result.Abstract.IResult" Collapsed="true">
-    <Position X="18.5" Y="10.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IBaseDal&lt;T&gt;">
-    <Position X="18.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IEtkinlikGorevleriDal" Collapsed="true">
-    <Position X="13.25" Y="2.5" Width="1.75" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IEtkinlikGorevlileriDal" Collapsed="true">
-    <Position X="20.5" Y="2.5" Width="2" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IEtkinlikZiyaretDal" Collapsed="true">
-    <Position X="25.5" Y="2.5" Width="1.75" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IIslemlerDal" Collapsed="true">
-    <Position X="8.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IPersonelDal" Collapsed="true">
-    <Position X="15.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IRandevuDal" Collapsed="true">
-    <Position X="23.25" Y="2.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IUnvanDal" Collapsed="true">
-    <Position X="28" Y="2.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IUzmanYardimciDal" Collapsed="true">
-    <Position X="10.75" Y="2.5" Width="1.75" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="DataAccess.Abstract.IYurutucuFirmaDal" Collapsed="true">
-    <Position X="18" Y="2.5" Width="1.75" />
+    <Position X="21.25" Y="10.75" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />

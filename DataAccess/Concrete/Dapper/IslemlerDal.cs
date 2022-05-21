@@ -28,7 +28,7 @@ namespace DataAccess.Concrete.Dapper
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Execute(query, id);
+                var result = connection.Execute(query, new { id=id});
                 return result;
             }
         }
@@ -43,10 +43,15 @@ namespace DataAccess.Concrete.Dapper
                 return result.AsList();
             }
         }
-
-        public List<Islemler> GetAllFilter(Islemler entity)
+        public List<Islemler> GetAllFilter(string islemAdi)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * FROM public.islemler WHERE adi LIKE CONCAT('%',@adi,'%');";
+            using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
+            {
+                connection.Open();
+                var result = connection.Query<Islemler>(query, new { adi=islemAdi});
+                return result.AsList();
+            }
         }
 
         public  Islemler GetById(int id)

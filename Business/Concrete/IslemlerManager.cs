@@ -47,9 +47,16 @@ namespace Business.Concrete
             return new ErrorDataResult<List<Islemler>>(result);
         }
 
-        public IDataResult<List<Islemler>> GetAllFilter(Islemler entity)
+  
+
+        public IDataResult<List<Islemler>> GetAllFilter(string islemAdi)
         {
-            throw new System.NotImplementedException();
+            var result = _islemlerDal.GetAllFilter(islemAdi);
+            if (result != null && result.Count > 0)
+            {
+                return new SuccessDataResult<List<Islemler>>(result);
+            }
+            return new ErrorDataResult<List<Islemler>>(result);
         }
 
         public IDataResult<Islemler> GetById(int id)

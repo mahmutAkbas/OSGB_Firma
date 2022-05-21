@@ -1,5 +1,5 @@
-﻿<UserControl
-    x:Class="WinUI.Views.RandevuView"
+﻿<Window
+    x:Class="WinUI.Views.EtkinlikGorevView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,27 +7,35 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    Title="EtkinlikGorevView"
+    Width="800"
+    Height="450"
+    Background="#1C1C1C"
     mc:Ignorable="d">
     <Grid>
+        <!--#region  Grid-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <!--#endregion-->
+        <!--#region  Unvan Kayıt-->
         <GroupBox
+            x:Name="GroupUnvan"
             Grid.Column="0"
             Margin="5"
-            Header="Randevu Sayfası"
+            Header="İşlem Sayfası"
             Style="{StaticResource GroupBoxTab}">
             <hc:UniformSpacingPanel Orientation="Vertical" Spacing="10">
-
-                <hc:DatePicker
-                    Name="DppRandevuTarihi"
+                <ComboBox
+                    x:Name="CbIslemler"
                     hc:InfoElement.Necessary="True"
-                    hc:InfoElement.Placeholder="Örn : 02/02/2022"
-                    hc:InfoElement.Title="Randevu Tarihi" />
-
+                    hc:InfoElement.Placeholder="Örn : Çalışan Muayenesi"
+                    hc:InfoElement.Title="İşlem"
+                    DisplayMemberPath="Adi"
+                    IsEditable="True"
+                    SelectedValuePath="Id"
+                    Style="{StaticResource ComboBoxExtend}" />
                 <TextBox
                     x:Name="EditAciklama"
                     Height="150"
@@ -38,7 +46,7 @@
                     AcceptsReturn="True"
                     Style="{StaticResource TextBoxExtendBaseStyle}"
                     VerticalScrollBarVisibility="Auto" />
-                <UniformGrid Columns="4" FirstColumn="1">
+                <UniformGrid Columns="3" FirstColumn="1">
                     <Button
                         Name="BtnEkle"
                         Margin="3"
@@ -52,21 +60,6 @@
                                 VerticalAlignment="Center"
                                 FontWeight="Medium"
                                 Text="Ekle" />
-                        </StackPanel>
-                    </Button>
-                    <Button
-                        Name="BtnGuncelle"
-                        Margin="3"
-                        HorizontalAlignment="Stretch"
-                        Click="BtnGuncelle_Click"
-                        Style="{StaticResource ButtonPrimary}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:FontAwesome FontSize="18" Icon="Edit" />
-                            <TextBlock
-                                Margin="5,0,0,0"
-                                VerticalAlignment="Center"
-                                FontWeight="Medium"
-                                Text="Güncelle" />
                         </StackPanel>
                     </Button>
                     <Button
@@ -87,22 +80,24 @@
                 </UniformGrid>
             </hc:UniformSpacingPanel>
         </GroupBox>
+        <!--#endregion-->
+        <!--#region Unvan Listesi-->
         <GroupBox
             Grid.Column="1"
             Margin="5"
-            Header="Randevu Liste Sayfası"
+            Header="İşlem Listesi"
             Style="{StaticResource GroupBoxTab}">
             <hc:UniformSpacingPanel Orientation="Vertical" Spacing="10">
-                <hc:DatePicker
-                    Name="DpRandevuTarihi"
-                    hc:InfoElement.Placeholder="Örn : 02/02/2022"
-                    hc:InfoElement.Title="Randevu Tarihi"
-                    SelectedDateChanged="DpRandevuTarihi_SelectedDateChanged"
+                <hc:SearchBar
+                    Name="SbIslemAdi"
+                    hc:InfoElement.Placeholder="Örn : Çalışan Muayenesi"
+                    hc:InfoElement.Title="İşlem Ara"
                     ShowClearButton="True"
-                    Style="{StaticResource DatePickerPlusBaseStyle}" />
+                    Style="{StaticResource SearchBarPlus}"
+                    TextChanged="SbIslemAdi_TextChanged" />
 
                 <DataGrid
-                    x:Name="DgFirmaList"
+                    x:Name="DgIslemList"
                     Grid.Row="1"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -115,42 +110,20 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding RandevuTarihi}"
-                            Header="Tarih" />
+                            Binding="{Binding Adi}"
+                            Header="İşlem" />
                         <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding Onay}"
-                            Header="Onay" />
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button
-                                            x:Name="BtnRandevuDetay"
-                                            Width="75"
-                                            Height="50"
-                                            Margin="5,0,0,0"
-                                            Click="BtnRandevuDetay_Click"
-                                            Style="{StaticResource ButtonInfo}">
-                                            <fa:FontAwesome Icon="Search" />
-                                        </Button>
-                                        <Button
-                                            x:Name="BtnRandevuSil"
-                                            Width="75"
-                                            Height="50"
-                                            Margin="5,0,0,0"
-                                            Click="BtnRandevuSil_Click"
-                                            Style="{StaticResource ButtonDanger}">
-                                            <fa:FontAwesome Icon="Remove" />
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                            Binding="{Binding Tarih}"
+                            Header="Tarih" />
+
+
+
                     </DataGrid.Columns>
                 </DataGrid>
             </hc:UniformSpacingPanel>
 
         </GroupBox>
+        <!--#endregion-->
     </Grid>
-</UserControl>
+</Window>

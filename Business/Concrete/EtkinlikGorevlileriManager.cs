@@ -4,6 +4,7 @@ using Business.Utilities.Result.Abstract;
 using Business.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete.Data;
+using Entities.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -46,11 +47,7 @@ namespace Business.Concrete
             return new ErrorDataResult<List<EtkinlikGorevlileri>>(result);
         }
 
-        public IDataResult<List<EtkinlikGorevlileri>> GetAllFilter(EtkinlikGorevlileri entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
+  
         public IDataResult<EtkinlikGorevlileri> GetById(int id)
         {
             var result =  _etkinlikGorevlileriDal.GetById(id);
@@ -59,6 +56,16 @@ namespace Business.Concrete
                 return new SuccessDataResult<EtkinlikGorevlileri>(result);
             }
             return new ErrorDataResult<EtkinlikGorevlileri>(result);
+        }
+
+        public IDataResult<List<EtkinlikGorevliDto>> GetDtos(string personelAdi)
+        {
+            var result = _etkinlikGorevlileriDal.GetDtos(personelAdi);
+            if (result != null && result.Count > 0)
+            {
+                return new SuccessDataResult<List<EtkinlikGorevliDto>>(result);
+            }
+            return new ErrorDataResult<List<EtkinlikGorevliDto>>(result);
         }
 
         public IResult Update(EtkinlikGorevlileri entity)
