@@ -7,7 +7,7 @@ namespace Business.Abstract
 {
     public interface IEtkinlikGorevleriService : IBaseService<EtkinlikGorevleri>
     {
-        IDataResult<List<EtkinlikGorevDto>> GetEtkinlikGorevDtos(string islemAdi);
+        IDataResult<List<EtkinlikGorevDto>> GetEtkinlikGorevDtos(string islemAdi, int ziyaretId);
 
     }
 }

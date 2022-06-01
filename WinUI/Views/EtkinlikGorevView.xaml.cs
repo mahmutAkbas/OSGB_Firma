@@ -65,8 +65,13 @@ namespace WinUI.Views
         }
         void Listele(string personelAdi)
         {
-            var result = _dataFaktory.EtkinlikGorevleri.GetEtkinlikGorevDtos(personelAdi);
+            var result = _dataFaktory.EtkinlikGorevleri.GetEtkinlikGorevDtos(personelAdi,_ziyaretId);
             DgIslemList.ItemsSource = result.Success ? result.Data : null;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Listele("");
         }
     }
 }

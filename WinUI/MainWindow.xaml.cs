@@ -16,7 +16,9 @@ namespace WinUI
         {
             InitializeComponent();
             faktory = new DataFaktory();
-            MenuList.ItemsSource = TreeViewMenuManager.GetMenu(faktory,1);
+            MenuList.ItemsSource = TreeViewMenuManager.GetMenu(faktory,2);
+
+
         }
         DataFaktory faktory;
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -50,6 +52,11 @@ namespace WinUI
         {
             var item = (MenuList.SelectedItem as MenuItem);
             ContentView.Content = item != null ? item.Path : null;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MenuList.SelectedIndex = MenuList.Items.Count - 1;
         }
     }
 }

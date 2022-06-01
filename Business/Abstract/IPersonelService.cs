@@ -12,5 +12,6 @@ namespace Business.Abstract
     {
         IDataResult<List<PersonelDto>> GetAllPersonelDto(bool silinmeDurumu);
         IDataResult<List<PersonelDto>> GetAllFilter(string personelAdi,bool silinmeDurumu);
+
     }
 }

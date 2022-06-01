@@ -47,9 +47,6 @@ namespace Business.Concrete
             }
             return new ErrorDataResult<List<EtkinlikGorevleri>>(result);
         }
-
-
-
         public IDataResult<EtkinlikGorevleri> GetById(int id)
         {
             var result = _etkinlikGorevleriDal.GetById(id);
@@ -60,9 +57,9 @@ namespace Business.Concrete
             return new ErrorDataResult<EtkinlikGorevleri>(result);
         }
 
-        public IDataResult<List<EtkinlikGorevDto>> GetEtkinlikGorevDtos(string islemAdi)
+        public IDataResult<List<EtkinlikGorevDto>> GetEtkinlikGorevDtos(string islemAdi,int islemId)
         {
-            var result = _etkinlikGorevleriDal.GetEtkinlikGorevDtos(islemAdi);
+            var result = _etkinlikGorevleriDal.GetEtkinlikGorevDtos(islemAdi,islemId);
             if (result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<EtkinlikGorevDto>>(result);

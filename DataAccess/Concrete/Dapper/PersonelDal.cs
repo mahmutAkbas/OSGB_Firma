@@ -59,7 +59,7 @@ namespace DataAccess.Concrete.Dapper
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = connection.QueryFirst<Personel>(query, id);
+                var result = connection.QueryFirst<Personel>(query, new { id=id});
                 return result;
             }
         }
@@ -74,7 +74,6 @@ namespace DataAccess.Concrete.Dapper
                 return result.AsList();
             }
         }
-
         public int Update(Personel entity)
         {
             string query = "UPDATE public.personel SET  adi=@adi, soyadi=@soyadi, telefon=@telefon, kayittarihi=@kayittarihi, silinmedurumu=@silinmedurumu, silinmetarihi=@silinmetarihi, unvanid=@unvanid WHERE id=@id;";

@@ -11,5 +11,6 @@ namespace Entities.Concrete.Data
         public DateTime KayitTarihi { get; set; }
         public bool SilinmeDurumu { get; set; }
         public DateTime SilinmeTarihi { get; set; }
+        public bool Aktif { get; set; }
     }
 }

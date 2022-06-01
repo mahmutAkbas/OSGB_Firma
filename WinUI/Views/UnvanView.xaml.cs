@@ -32,19 +32,29 @@ namespace WinUI.Views
         }
         private void BtnUnvanSil_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
-            if (btn.DataContext is Unvan)
+            try
             {
-                var unvan = (Unvan)btn.DataContext;
-                MessageBoxResult result = HandyControl.Controls.MessageBox.Show($"{unvan.UnvanAdi}  Silmek istediğinizden emin misiniz?", "Unvan Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+                Button btn = (Button)sender;
+                if (btn.DataContext is Unvan)
                 {
-                    var resultDelete = _faktory.Unvans.Delete(unvan);
-                    HandyControl.Controls.MessageBox.Show(resultDelete.Message, "Unvan Delete", MessageBoxButton.OK, MessageBoxImage.Information);
-                    if (resultDelete.Success)
-                        Listele();
+                    var unvan = (Unvan)btn.DataContext;
+                    MessageBoxResult result = HandyControl.Controls.MessageBox.Show($"{unvan.UnvanAdi}  Silmek istediğinizden emin misiniz?", "Unvan Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var resultDelete = _faktory.Unvans.Delete(unvan);
+                        HandyControl.Controls.MessageBox.Show(resultDelete.Message, "Unvan Delete", MessageBoxButton.OK, MessageBoxImage.Information);
+                        if (resultDelete.Success)
+                            Listele();
+                    }
                 }
+
             }
+            catch (System.Exception)
+            {
+
+                HandyControl.Controls.MessageBox.Show("Bu ünvanı kullana personel bulunmakta.Önce personel ünvanlarını değiştiriniz.", "Unvan Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+          
         }
         private void BtnGuncelle_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +103,7 @@ namespace WinUI.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            Listele();
             Temizle();
         }
 

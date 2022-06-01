@@ -25,11 +25,11 @@ namespace WinUI.Helper.Menu
         {
             Menus.Add(new MenuItem() { Title = "Personel", Image = FontAwesome.WPF.FontAwesomeIcon.UserOutline, Path = new PersonelView(dataFaktory,userId) });
             Menus.Add(new MenuItem() { Title = "Ünvan", Image = FontAwesome.WPF.FontAwesomeIcon.StarHalfOutline, Path = new UnvanView(dataFaktory, userId) });
-            Menus.Add(new MenuItem() { Title = "Firma", Image = FontAwesome.WPF.FontAwesomeIcon.StarHalfOutline, Path = new YurutucuFirmaView(dataFaktory, userId) });
-            Menus.Add(new MenuItem() { Title = "Randevu", Image = FontAwesome.WPF.FontAwesomeIcon.StarHalfOutline, Path = new RandevuView(dataFaktory, userId) });
-            Menus.Add(new MenuItem() { Title = "İşlemler", Image = FontAwesome.WPF.FontAwesomeIcon.StarHalfOutline, Path = new IslemlerView(dataFaktory, userId) });
-            Menus.Add(new MenuItem() { Title = "Randevular", Image = FontAwesome.WPF.FontAwesomeIcon.StarHalfOutline, Path = new RandevuListesi(dataFaktory) });
-            Menus.Add(new MenuItem() { Title = "Etkinlik Ziyareti", Image = FontAwesome.WPF.FontAwesomeIcon.StarHalfOutline, Path = new EtkinlikZiyaretiView(dataFaktory) });
+            Menus.Add(new MenuItem() { Title = "Firma", Image = FontAwesome.WPF.FontAwesomeIcon.Home, Path = new YurutucuFirmaView(dataFaktory, userId) });
+            Menus.Add(new MenuItem() { Title = "Randevu", Image = FontAwesome.WPF.FontAwesomeIcon.CalendarPlusOutline, Path = new RandevuView(dataFaktory, userId) });
+            Menus.Add(new MenuItem() { Title = "İşlemler", Image = FontAwesome.WPF.FontAwesomeIcon.Tasks, Path = new IslemlerView(dataFaktory, userId) });
+            Menus.Add(new MenuItem() { Title = "Randevular", Image = FontAwesome.WPF.FontAwesomeIcon.Calendar, Path = new RandevuListesi(dataFaktory) });
+            Menus.Add(new MenuItem() { Title = "Etkinlik Ziyareti", Image = FontAwesome.WPF.FontAwesomeIcon.AreaChart, Path = new EtkinlikZiyaretiView(dataFaktory) });
 
             return Menus;
         }

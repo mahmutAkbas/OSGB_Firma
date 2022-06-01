@@ -10,6 +10,7 @@
     Title="MainWindow"
     Background="#1C1C1C"
     MouseDown="Window_MouseDown"
+    Loaded="Window_Loaded"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"

@@ -56,13 +56,14 @@ namespace DataAccess.Concrete.Dapper
             }
         }
 
-        public List<EtkinlikGorevliDto> GetDtos(string personelAdi)
+        public List<EtkinlikGorevliDto> GetDtos(string personelAdi, int ziyaretId)
         {
-            string query = "SELECT p.adi,p.soyadi,e.yetki FROM public.etkinlik_gorevlileri e INNER JOIN public.personel p ON e.personelid = p.id  WHERE p.adi LIKE CONCAT('%',@adi,'%'); ";
+            string query = "SELECT p.adi,p.soyadi,e.yetki FROM public.etkinlik_gorevlileri e INNER JOIN public.personel p ON e.personelid = p.id  WHERE p.adi LIKE CONCAT('%',@adi,'%') AND etkinlikziyaretid=@etkinlikziyaretid; ";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Query<EtkinlikGorevliDto>(query, new { adi=personelAdi});
+                var result = connection.Query<EtkinlikGorevliDto>(query, new { adi=personelAdi, etkinlikziyaretid =ziyaretId
+                });
                 return result.AsList();
             }
         }

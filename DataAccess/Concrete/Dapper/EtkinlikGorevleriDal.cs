@@ -43,24 +43,23 @@ namespace DataAccess.Concrete.Dapper
             }
         }
 
-        public  EtkinlikGorevleri GetById(int id)
+        public EtkinlikGorevleri GetById(int id)
         {
             string query = "SELECT * FROM public.etkinlik_gorevleri WHERE id=@id;";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result =  connection.QueryFirst<EtkinlikGorevleri>(query,new { id=id});
+                var result = connection.QueryFirst<EtkinlikGorevleri>(query, new { id = id });
                 return result;
             }
         }
-
-        public List<EtkinlikGorevDto> GetEtkinlikGorevDtos(string islemAdi)
+        public List<EtkinlikGorevDto> GetEtkinlikGorevDtos(string islemAdi,int islemId)
         {
-            string query = "SELECT i.adi,e.tarih FROM public.etkinlik_gorevleri e INNER JOIN public.islemler i ON e.islemid = i.id WHERE i.adi LIKE CONCAT('%',@adi,'%')";
+            string query = "SELECT i.adi,e.tarih FROM public.etkinlik_gorevleri e INNER JOIN public.islemler i ON e.islemid = i.id WHERE i.adi LIKE CONCAT('%',@adi,'%') AND e.islemid=@islemid";
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Query<EtkinlikGorevDto>(query,new { adi=islemAdi});
+                var result = connection.Query<EtkinlikGorevDto>(query,new { adi=islemAdi, islemid =islemId});
                 return result.AsList();
             }
         }

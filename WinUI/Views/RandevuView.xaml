@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
+    Loaded="UserControl_Loaded"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>

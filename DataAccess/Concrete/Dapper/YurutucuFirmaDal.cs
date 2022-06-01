@@ -26,7 +26,7 @@ namespace DataAccess.Concrete.Dapper
             using (var connection = new NpgsqlConnection(OsgbContext.ConnectionString))
             {
                 connection.Open();
-                var result =  connection.Execute(query, id);
+                var result =  connection.Execute(query,new { id=id });
                 return result;
             }
         }

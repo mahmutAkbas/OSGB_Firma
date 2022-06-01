@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
+    Loaded="UserControl_Loaded"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
@@ -27,6 +28,7 @@
                     hc:InfoElement.Necessary="True"
                     hc:InfoElement.Placeholder="Örn: A Firması"
                     hc:InfoElement.Title="Firma Adı"
+                    MaxLength="30"
                     Style="{StaticResource TextBoxExtend}" />
                 <UniformGrid Columns="4" FirstColumn="1">
                     <Button

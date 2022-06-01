@@ -8,6 +8,8 @@
     xmlns:local="clr-namespace:WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="EtkinlikGorevView"
+       WindowStartupLocation="CenterScreen"
+    Loaded="Window_Loaded"
     Width="800"
     Height="450"
     Background="#1C1C1C"

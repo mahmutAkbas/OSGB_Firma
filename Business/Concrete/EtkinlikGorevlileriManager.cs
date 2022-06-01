@@ -58,9 +58,9 @@ namespace Business.Concrete
             return new ErrorDataResult<EtkinlikGorevlileri>(result);
         }
 
-        public IDataResult<List<EtkinlikGorevliDto>> GetDtos(string personelAdi)
+        public IDataResult<List<EtkinlikGorevliDto>> GetDtos(string personelAdi,int ziyaretId)
         {
-            var result = _etkinlikGorevlileriDal.GetDtos(personelAdi);
+            var result = _etkinlikGorevlileriDal.GetDtos(personelAdi, ziyaretId);
             if (result != null && result.Count > 0)
             {
                 return new SuccessDataResult<List<EtkinlikGorevliDto>>(result);

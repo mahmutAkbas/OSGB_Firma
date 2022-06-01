@@ -9,6 +9,6 @@ namespace Business.Abstract
 {
     public interface IEtkinlikGorevlileriService:IBaseService<EtkinlikGorevlileri>
     {
-        IDataResult<List<EtkinlikGorevliDto>> GetDtos(string personelAdi);
+        IDataResult<List<EtkinlikGorevliDto>> GetDtos(string personelAdi, int ziyaretId);
     }
 }

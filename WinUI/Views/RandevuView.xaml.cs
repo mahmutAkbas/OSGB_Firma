@@ -42,7 +42,6 @@ namespace WinUI.Views
 
         private void BtnGuncelle_Click(object sender, RoutedEventArgs e)
         {
-            if (!_randevu.Onay) { 
             MessageBoxResult result = HandyControl.Controls.MessageBox.Show($"{_randevu.RandevuTarihi} Kaydı güncellemek istediğinizden emin misiniz?", "Randevu Update", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
@@ -56,12 +55,6 @@ namespace WinUI.Views
                     Listele();
                     Temizle();
                 }
-            }
-            }
-            else
-            {
-                BtnEkle.IsEnabled = false;
-                BtnEkle.IsEnabled = false;
             }
         }
 
@@ -92,8 +85,18 @@ namespace WinUI.Views
                 _randevu = (Randevu)btn.DataContext;
                 EditAciklama.Text = _randevu.Aciklama;
                 DppRandevuTarihi.SelectedDate = _randevu.RandevuTarihi;
-                BtnEkle.IsEnabled = false;
-                BtnGuncelle.IsEnabled = true;
+                if (_randevu.Onay)
+                {
+                    BtnEkle.IsEnabled = false;
+                    BtnGuncelle.IsEnabled = false;
+                }
+                else
+                {
+                    BtnEkle.IsEnabled = false;
+                    BtnGuncelle.IsEnabled = true;
+                }
+             
+
             }
         }
 
@@ -103,6 +106,7 @@ namespace WinUI.Views
             if (btn.DataContext is Randevu)
             {
                 var randevu = (Randevu)btn.DataContext;
+                if (!randevu.Onay) { 
                 MessageBoxResult result = HandyControl.Controls.MessageBox.Show($"{randevu.RandevuTarihi} 'li kaydı   silmek istediğinizden emin misiniz?", "Randevu Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -110,6 +114,11 @@ namespace WinUI.Views
                     HandyControl.Controls.MessageBox.Show(resultDelete.Message, "Randevu Delete", MessageBoxButton.OK, MessageBoxImage.Information);
                     if (resultDelete.Success)
                         Listele();
+                }
+                }
+                else
+                {
+                    HandyControl.Controls.MessageBox.Show("Onaylanmış randevuyu silemezsiniz!", "Randevu Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
@@ -126,6 +135,12 @@ namespace WinUI.Views
         {
             var result= _faktory.RandevuFirmas.GetAllById(_userId);
             DgFirmaList.ItemsSource = result.Success?result.Data:null;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Listele();
+            Temizle();
         }
     }
 }

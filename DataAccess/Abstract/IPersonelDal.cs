@@ -9,6 +9,7 @@ namespace DataAccess.Abstract
     {
         List<PersonelDto> GetAllPersonelDto(bool silinmeDurumu);
         List<PersonelDto> GetAllFilter(string personelAdi,bool silinmeDurumu);
+        
 
     }
 }

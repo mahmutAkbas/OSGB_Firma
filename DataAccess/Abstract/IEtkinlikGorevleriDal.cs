@@ -8,6 +8,6 @@ namespace DataAccess.Abstract
 {
     public interface IEtkinlikGorevleriDal:IBaseDal<EtkinlikGorevleri>
     {
-        List<EtkinlikGorevDto> GetEtkinlikGorevDtos(string islemAdi);
+        List<EtkinlikGorevDto> GetEtkinlikGorevDtos(string islemAdi, int islemId);
     }
 }

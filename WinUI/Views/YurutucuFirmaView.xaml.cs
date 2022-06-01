@@ -81,18 +81,26 @@ namespace WinUI.Views
 
         private void BtnFirmaSil_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
-            if (btn.DataContext is YurutucuFirma)
+            try
             {
-                var firma = (YurutucuFirma)btn.DataContext;
-                MessageBoxResult result = HandyControl.Controls.MessageBox.Show($"{firma.Adi}  Silmek istediğinizden emin misiniz?", "Firma Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+                Button btn = (Button)sender;
+                if (btn.DataContext is YurutucuFirma)
                 {
-                    var resultDelete = _faktory.YurutucuFirmas.Delete(firma);
-                    HandyControl.Controls.MessageBox.Show(resultDelete.Message, "Firma Delete", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Listele();
+                    var firma = (YurutucuFirma)btn.DataContext;
+                    MessageBoxResult result = HandyControl.Controls.MessageBox.Show($"{firma.Adi}  Silmek istediğinizden emin misiniz?", "Firma Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var resultDelete = _faktory.YurutucuFirmas.Delete(firma);
+                        HandyControl.Controls.MessageBox.Show(resultDelete.Message, "Firma Delete", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Listele();
+                    }
                 }
             }
+            catch (System.Exception)
+            {
+                HandyControl.Controls.MessageBox.Show("Firmaya ait veriler bulunmakta. Bu firmayı silemezsiniz", "Firma Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+          
         }
         public void Temizle()
         {
@@ -105,6 +113,12 @@ namespace WinUI.Views
         {
             var result = _faktory.YurutucuFirmas.GetAll();
             DgFirmaList.ItemsSource = result.Success ? result.Data : null;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Listele();
+            Temizle();
         }
     }
 }

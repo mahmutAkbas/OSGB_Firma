@@ -25,12 +25,14 @@
                     x:Name="EditAdi"
                     hc:InfoElement.Necessary="True"
                     hc:InfoElement.Placeholder="Örn: Ahmet"
+                     MaxLength="25"
                     hc:InfoElement.Title="Personel Adı"
                     Style="{StaticResource TextBoxExtend}" />
                 <TextBox
                     x:Name="EditSoyadi"
                     hc:InfoElement.Necessary="True"
                     hc:InfoElement.Placeholder="Örn: Halit"
+                    MaxLength="25"
                     hc:InfoElement.Title="Ünvan Adı"
                     Style="{StaticResource TextBoxExtend}" />
                 <TextBox

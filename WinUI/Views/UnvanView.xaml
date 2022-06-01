@@ -30,6 +30,7 @@
                     x:Name="EditUnvanAdi"
                     hc:InfoElement.Necessary="True"
                     hc:InfoElement.Placeholder="Örn: Hekim"
+                    MaxLength="30"
                     hc:InfoElement.Title="Ünvan Adı"
                     Style="{StaticResource TextBoxExtend}" />
                 <UniformGrid Columns="4" FirstColumn="1">

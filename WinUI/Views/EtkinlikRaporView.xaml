@@ -1,0 +1,90 @@
+﻿<Window x:Class="WinUI.Views.EtkinlikRaporView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WinUI.Views"
+          xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+            Background="#1C1C1C"
+    WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="EtkinlikRaporView" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GroupBox
+            Grid.Column="0"
+            Margin="5"
+            Header="Görevli Listesi"
+            Style="{StaticResource GroupBoxTab}">
+            <hc:UniformSpacingPanel Orientation="Vertical" Spacing="10">
+                <DataGrid
+                    x:Name="DgGorevliList"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False"
+                    Background="#FF232326"
+                    CanUserSortColumns="True"
+                    GridLinesVisibility="Horizontal"
+                    HeadersVisibility="Column"
+                    RowDetailsVisibilityMode="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Adi}"
+                            Header="Adı" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Soyadi}"
+                            Header="SoyAdı" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Yetki}"
+                            Header="Yetki" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </hc:UniformSpacingPanel>
+
+        </GroupBox>
+
+        <GroupBox
+            Grid.Column="1"
+            Margin="5"
+            Header="İşlem Listesi"
+            Style="{StaticResource GroupBoxTab}">
+            <hc:UniformSpacingPanel Orientation="Vertical" Spacing="10">
+                <DataGrid
+                    x:Name="DgIslemList"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False"
+                    Background="#FF232326"
+                    CanUserSortColumns="True"
+                    GridLinesVisibility="Horizontal"
+                    HeadersVisibility="Column"
+                    RowDetailsVisibilityMode="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Adi}"
+                            Header="İşlem" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Tarih}"
+                            Header="Tarih" />
+
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </hc:UniformSpacingPanel>
+
+        </GroupBox>
+    </Grid>
+</Window>

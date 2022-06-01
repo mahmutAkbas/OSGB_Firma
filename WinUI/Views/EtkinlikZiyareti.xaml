@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="EtkinlikZiyareti"
     Width="400"
+    Loaded="Window_Loaded"
     Background="#1C1C1C"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"

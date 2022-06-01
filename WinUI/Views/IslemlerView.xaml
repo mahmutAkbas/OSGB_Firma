@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
+    Loaded="UserControl_Loaded"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
@@ -25,6 +26,7 @@
                     Name="EditIslemAdi"
                     hc:InfoElement.Necessary="True"
                     hc:InfoElement.Placeholder="Örn : Çalışan Muayenesi"
+                    MaxLength="50"
                     hc:InfoElement.Title="İşlem Adı"
                     Style="{StaticResource TextBoxExtend}" />
                 <ComboBox
@@ -115,10 +117,6 @@
                             Width="*"
                             Binding="{Binding Adi}"
                             Header="Firma Adı" />
-                        <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding KayitTarihi}"
-                            Header="Kayıt Tarihi" />
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

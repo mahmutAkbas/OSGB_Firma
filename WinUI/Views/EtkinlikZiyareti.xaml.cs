@@ -82,5 +82,12 @@ namespace WinUI.Views
         {
             Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var comboHekim = _faktory.Personels.GetAllPersonelDto(false);
+            CbIsgGorevli.ItemsSource = comboHekim.Data;
+            CbHekimGorevli.ItemsSource = comboHekim.Data;
+        }
     }
 }

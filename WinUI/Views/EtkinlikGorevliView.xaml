@@ -8,9 +8,11 @@
     xmlns:local="clr-namespace:WinUI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="EtkinlikGorevliView"
+    Loaded="Window_Loaded"
     Width="800"
     Height="450"
     Background="#1C1C1C"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
         <!--#region  Grid-->

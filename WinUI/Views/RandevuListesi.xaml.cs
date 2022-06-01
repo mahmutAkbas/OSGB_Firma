@@ -82,12 +82,16 @@ namespace WinUI.Views
                 var result = _dataFaktory.RandevuFirmas.GetRandevuDtoAllFilter(DateTime.MinValue, SbFirmaAdi.Text, (bool)TgOnayDurumu.IsChecked);
                 DgRandevuList.ItemsSource = result.Success ? result.Data : null;
             }
-
         }
         public void Listele()
         {
             var result = _dataFaktory.RandevuFirmas.GetRandevuDtoAllByOnay((bool)TgOnayDurumu.IsChecked);
             DgRandevuList.ItemsSource = result.Success ? result.Data : null;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Listele();
         }
     }
 }

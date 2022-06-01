@@ -117,5 +117,11 @@ namespace WinUI.Views
                 Listele();
             }
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Listele();
+            Temizle();
+        }
     }
 }

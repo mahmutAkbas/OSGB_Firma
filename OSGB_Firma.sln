@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinUI", "WinUI\WinUI.csproj", "{24680BC2-42B6-44B3-BBE3-19792E562F7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSGB_Test", "OSGB_Test\OSGB_Test.csproj", "{9DD118DC-8115-4C7C-84D0-80ECFC467CD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSGB_Test", "OSGB_Test\OSGB_Test.csproj", "{9DD118DC-8115-4C7C-84D0-80ECFC467CD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

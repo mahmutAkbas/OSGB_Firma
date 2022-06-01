@@ -66,6 +66,7 @@ namespace Business.Concrete
             return new ErrorDataResult<List<PersonelDto>>(result);
         }
 
+
         public IDataResult<List<PersonelDto>> GetAllPersonelDto(bool silinmeDurumu)
         {
             var result = _personelDal.GetAllPersonelDto(silinmeDurumu);

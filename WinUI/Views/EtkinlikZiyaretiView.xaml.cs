@@ -1,17 +1,7 @@
 ﻿using Business;
 using Entities.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WinUI.Views
 {
@@ -23,7 +13,7 @@ namespace WinUI.Views
         private DataFaktory _dataFaktory;
         public EtkinlikZiyaretiView(DataFaktory dataFaktory)
         {
-            _dataFaktory = dataFaktory; 
+            _dataFaktory = dataFaktory;
             InitializeComponent();
             Listele();
         }
@@ -63,10 +53,27 @@ namespace WinUI.Views
             }
 
         }
-      void  Listele()
+        void Listele()
         {
             var result = _dataFaktory.EtkinlikZiyarets.GetEtkinlikZiyaretDto();
-            DgRandevuList.ItemsSource = result.Success ? result.Data:null;
+            DgRandevuList.ItemsSource = result.Success ? result.Data : null;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Listele();
+           
+        }
+
+        private void BtnGorevRapor_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.DataContext is EtkinlikZiyaretDto)
+            {
+                var ziyaret = (EtkinlikZiyaretDto)btn.DataContext;
+                var form = new EtkinlikRaporView(_dataFaktory, ziyaret.Id);
+                form.ShowDialog();
+            }
         }
     }
 }
